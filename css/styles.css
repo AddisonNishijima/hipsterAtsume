@@ -2,6 +2,7 @@
   border: 3px solid black;
   max-width: 250px;
   height: 250px;
+  background-image: url(../img/grass.png);
 }
 
 .jumbotron {
@@ -15,6 +16,11 @@
 .container {
   margin-right: 500px;
 }
+
 body {
   background-color: #ffcccc;
+}
+
+#footer{
+  margin-top: 100px;
 }
