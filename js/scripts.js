@@ -29,6 +29,7 @@ Game.prototype.getDisplayed = function(){
 
 Game.prototype.checkForHipster = function(){
   for(var j = 0; j < this.hipsterArray.length; j++){
+    this.hipsterArray[j].affinityMeter = 0;
     this.hipsterArray[j].checkAffinity(this.displayedItems);
   }
   this.hipsterArray.sort(function(hipster1, hipster2){
@@ -46,6 +47,28 @@ Game.prototype.checkForHipster = function(){
     return this.hipsterArray[0];
   }
 }
+
+Game.prototype.clearDisplay = function(){
+  this.hipsterArray.forEach(function(hipster){
+    hipster.affinityMeter = 0;
+  });
+  this.itemArray.forEach(function(item){
+    item.displayed = false;
+  });
+  this.displayedItems = [];
+}
+
+Game.prototype.resetEverything = function(){
+  this.hipsterArray.forEach(function(hipster){
+    hipster.affinityMeter = 0;
+  });
+  this.itemArray.forEach(function(item){
+    item.displayed = false;
+    item.inInventory = false;
+  });
+  this.displayedItems = [];
+}
+
 
 function Item(type) {
   this.type = type;
