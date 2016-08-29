@@ -64,6 +64,10 @@
   /*display:none;*/
 }
 
+#hipsterImage {
+  display: none;
+}
+
 #footer{
   margin-top: 100px;
   text-align: center;
@@ -91,4 +95,8 @@ button {
 
 body {
   background-color: #ffcccc;
+}
+
+img.lowOpacity {
+  opacity: .5;
 }
