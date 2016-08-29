@@ -1,4 +1,4 @@
-.jumbotron {
+.jumbotron  {
   text-align: center;
   font-size: 50px;
   font-family: 'Gloria Hallelujah', cursive;
@@ -6,6 +6,7 @@
   border: 5px dashed black;
   letter-spacing: 0.2em;
 }
+
 
 .container {
   margin: 0 auto 50px;
