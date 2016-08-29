@@ -8,22 +8,22 @@
     <script src='js/jquery-3.1.0.js'></script>
     <script src='js/bootstrap.min.js' type='text/javascript'></script>
     <script src='js/scripts.js'></script>
-    <title>Template</title>
+    <title>Hipster Atsume!</title>
   </head>
   <body>
-    <div class="jumbotron">
+    <div class="jumbotron" id="header">
       <h1>Hipster Atsume</h1>
+      <img id="banner" src="img/potentialbg2.png">
     </div>
-    <div class="dropdown">
-      <button class="btn btn-success btn-lg dropdown-toggle" type="button" data-toggle="dropdown">Menu
-      <span class="caret"></span></button>
-      <ul class="dropdown-menu">
-        <li><a href="#">New Game</a></li>
-        <li><a href="#">Inventory</a></li>
-        <li><a href="#">Settings</a></li>
-      </ul>
+    <button id="instructions" class="btn btn-success btn-lg" type="button">Instructions
+    </button>
+    <div class="container" id="instruction">
+      <div class="jumbotron">
+        <h3>Instructions</h3>
+      </div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula lobortis, sagittis sem aliquam, rutrum lacus. Nunc volutpat pellentesque mauris, in cursus urna. Aenean quis tristique lacus, sit amet blandit lorem. Vestibulum vel orci vulputate odio eleifend condimentum. Proin lorem lectus, maximus molestie congue nec, gravida a risus. Nulla lectus arcu, volutpat semper lacinia nec, dictum eget ipsum. Donec non libero ex. Morbi congue, felis sed interdum congue, sem metus consequat sapien, eu iaculis augue dui at sem. Morbi gravida tellus ex, nec iaculis augue lobortis facilisis.</p>
     </div>
-    <div class="container" id="yard">
+    <div id="yard">
       <div class="row">
         <div class="col-sm-4"></div>
         <div class="col-sm-4"></div>
@@ -81,7 +81,6 @@
           <div class="col-sm-4">Coming Soon!</div>
           <div class="col-sm-4">Coming Soon!</div>
         </div>
-      </div>
     </div>
     <div id="footer">
       <p>Created by: *INSERT WITTY TEAM NAME HERE*</p>

@@ -1,18 +1,14 @@
-.jumbotron {
+.jumbotron  {
   text-align: center;
   font-size: 50px;
   font-family: 'Gloria Hallelujah', cursive;
   background-color: #d7eb5a;
   border: 5px dashed black;
+  letter-spacing: 0.2em;
 }
 
 .container {
   margin: 0 auto 50px;
-}
-
-.dropdown {
-  margin-left: 875px;
-  margin-bottom: 5px;
 }
 
 .btn {
@@ -27,6 +23,21 @@
   text-align: center;
 }
 
+#instruction {
+  /*display: none;*/
+}
+
+#instruction p{
+  color: #455268;
+  font-size: 15pt;
+}
+
+#instructions {
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
 #yard .row {
   max-width: 750px;
 }
@@ -36,6 +47,7 @@
 }
 
 #inventory .col-sm-4 {
+  background-color: #455268;
   padding: 10px 10px 10px 10px;
   border: 3px solid black;
   max-width: 150px;
@@ -43,13 +55,20 @@
 }
 
 #yard .col-sm-4{
+  padding: 10px 10px 10px 10px;
   border: 1px solid black;
   max-width: 250px;
   height: 250px;
   background-image: url(../img/grass4.png);
 }
 
+#yard .row {
+  max-width: 750px;
+  margin: auto;
+}
+
 #inventory .jumbotron {
+  margin-top: 20px;
   text-align: center;
   font-family: 'Gloria Hallelujah', cursive;
   background-color: #d7eb5a;
@@ -62,6 +81,10 @@
 
 #store {
   /*display:none;*/
+}
+
+#store .col-sm-4 {
+  background-color: #455268;
 }
 
 #footer{
@@ -78,9 +101,13 @@
   max-width: 450px;
 }
 
+.jumbotron h3 {
+  font-size: 30px;
+}
+
 img {
-  max-width: 125px;
-  max-height: 125px;
+ max-width: 100px;
+ max-height: 100px;
 }
 
 button {
@@ -90,5 +117,5 @@ button {
 }
 
 body {
-  background-color: #ffcccc;
+  background-color: #B6C0D2;
 }
