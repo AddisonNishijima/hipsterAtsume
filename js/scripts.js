@@ -1,4 +1,13 @@
 //<!-- Back End -->
+function Game() {
+  this.progress = false;
+}
+
+Game.prototype.newPlayer = function(){
+  this.progress = true;
+  return this.progress;
+}
+
 function Item(type) {
   this.type = type;
   this.inInventory = false;
