@@ -1,10 +1,10 @@
-# _Template_
+# _Hipster Atsume_
 
-#### By _Ewa Manek_
+#### By _Ewa Manek, Francis Prus, Addison Nishijima, Amber Farrington_
 
 ## Description
 
-_A template website with linked Javascript, CSS, Bootstrap (v3.3.7), and jQuery(v3.1.0)_
+_Like neko atsume but with hipsters!_
 
 ## Setup/Installation Requirements
 
@@ -13,12 +13,12 @@ _A template website with linked Javascript, CSS, Bootstrap (v3.3.7), and jQuery(
 
 ## GitHub link
 
-https://github.com/ewajm/Template
+https://github.com/ewajm/hipsterAtsume
 
 ## Licensing
 
 * MIT
 
-Copyright (c) 2016 **_Ewa Manek_**
+Copyright (c) 2016 **_Francis Prus, Addison Nishijima, Amber Farringto, Ewa Manek_**
 
 Original Template Copyright (c) 2016 **_Ryan Loos_**
