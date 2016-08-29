@@ -101,6 +101,10 @@
   max-width: 450px;
 }
 
+#hipsterImage {
+  display: none;
+}
+
 .jumbotron h3 {
   font-size: 30px;
 }
@@ -118,4 +122,8 @@ button {
 
 body {
   background-color: #B6C0D2;
+}
+
+img.lowOpacity {
+  opacity: .5;
 }

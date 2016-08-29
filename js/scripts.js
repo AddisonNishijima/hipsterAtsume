@@ -18,6 +18,16 @@ Game.prototype.createHipster = function(){
 new Hipster("hat",["beer", "cigarettes", "coffee"], ["music", "bikes"])];
 }
 
+Game.prototype.addInventory = function(itemId){
+  for(var i = 0; i < this.itemArray.length; i++){
+    if(this.itemArray[i].type === itemId){
+      this.itemArray[i].toggleInventory();
+      console.log("here is inInventory of this thing" + this.itemArray[i].inInventory)
+      return this.itemArray[i].inInventory;
+    }
+  }
+}
+
 Game.prototype.getDisplayed = function(){
   this.displayedItems = [];
   for(var i = 0; i < this.itemArray.length; i++){
@@ -111,8 +121,41 @@ Hipster.prototype.checkAffinity = function(displayedItems){
 
 //<!-- Front End  -->
 $(document).ready(function(){
-  $("form#inputForm").submit(function(event){
-    event.preventDefault();
-
+  var inventoryItems = 0;
+  var newGame = new Game();
+  newGame.createItems();
+  newGame.createHipster();
+  $("#store img").click(function(){
+    var found = false;
+    var clickedImg = $(this).attr("src");
+    var itemId = $(this).attr("id");
+    if($(this).hasClass("lowOpacity")){
+      $("#inventory-row img").each(function(index){
+        var idNoNumber = $(this).attr("id").replace(/\d/g, "");
+        var idNumber = parseInt($(this).attr("id").replace(/[A-Za-z]/g, ""));
+        if(idNoNumber === itemId && idNumber === inventoryItems){
+          $(this).remove();
+          newGame.addInventory(itemId);
+          inventoryItems--;
+          found = true;
+        }
+      });
+      if(!found){
+        alert("Please do not remove out of order, moron");
+      } else {
+        $(this).removeClass("lowOpacity");
+      }
+    } else {
+      //debugger;
+      if(inventoryItems < 3){
+        if(newGame.addInventory(itemId)){
+          inventoryItems++;
+          $("#inventory"+inventoryItems).append("<img id='" + itemId + inventoryItems + "'src='" + clickedImg + "'>");
+          $(this).addClass("lowOpacity");
+        }
+      } else {
+          alert("lolnope");
+      }
+    }
   });
 });
