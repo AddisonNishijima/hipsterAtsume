@@ -7,7 +7,6 @@
   letter-spacing: 0.2em;
 }
 
-
 .container {
   margin: 0 auto 50px;
 }
@@ -43,7 +42,7 @@
   max-width: 750px;
 }
 
-#inventory .row, #store .row {
+#inventory .row, .store .row {
   max-width: 450px;
 }
 
@@ -73,6 +72,7 @@
   text-align: center;
   font-family: 'Gloria Hallelujah', cursive;
   background-color: #d7eb5a;
+  border: 5px dashed black;
 }
 
 #inventory {
