@@ -21,17 +21,17 @@
 }
 
 #inventory .col-sm-4 {
-  padding-top: 10px;
+  padding: 10px 10px 10px 10px;
   border: 3px solid black;
   max-width: 150px;
   height: 150px;
 }
 
 #yard .col-sm-4{
-  border: 3px solid black;
+  border: 1px solid black;
   max-width: 250px;
   height: 250px;
-  background-image: url(../img/grass.png);
+  background-image: url(../img/grass4.png);
 }
 
 #inventory .jumbotron {
@@ -58,7 +58,7 @@ img {
 
 button {
   margin-top: 10px;
-  margin-right: 96px;
+  margin-right: 85px;
 }
 
 body {
