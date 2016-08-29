@@ -1,10 +1,3 @@
-#yard .col-sm-4{
-  border: 3px solid black;
-  max-width: 250px;
-  height: 250px;
-  background-image: url(../img/grass.png);
-}
-
 .jumbotron {
   text-align: center;
   font-size: 50px;
@@ -15,7 +8,7 @@
 
 .container {
   margin-right: 500px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 .dropdown {
@@ -27,6 +20,13 @@
   border: 3px solid black;
   max-width: 150px;
   height: 150px;
+}
+
+#yard .col-sm-4{
+  border: 3px solid black;
+  max-width: 250px;
+  height: 250px;
+  background-image: url(../img/grass.png);
 }
 
 #inventory .jumbotron {
@@ -41,15 +41,22 @@
   margin-right: 350px;
 }
 
-body {
-  background-color: #ffcccc;
-}
-
 #footer{
   margin-top: 100px;
+  margin-left: 1100px;
 }
 
 img {
   max-width: 125px;
   max-height: 125px;
+}
+
+button {
+  margin-top: 10px;
+  margin-right: 150px;
+  margin-left: 10px;
+}
+
+body {
+  background-color: #ffcccc;
 }
