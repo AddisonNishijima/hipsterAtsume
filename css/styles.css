@@ -44,11 +44,25 @@
 
 #inventory {
   margin-right: 350px;
+  /*display:none;*/
+}
+
+#store {
+  /*display:none;*/
 }
 
 #footer{
   margin-top: 100px;
   margin-left: 1100px;
+}
+
+#store .jumbotron {
+  text-align: center;
+  margin-top: 20px;
+  font-family: 'Gloria Hallelujah', cursive;
+  background-color: #d7eb5a;
+  border: 5px dashed black;
+  margin-right: 700px;
 }
 
 img {
