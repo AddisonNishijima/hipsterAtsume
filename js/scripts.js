@@ -18,6 +18,35 @@ Game.prototype.createHipster = function(){
 new Hipster("hat",["beer", "cigarettes", "coffee"], ["music", "bikes"])];
 }
 
+Game.prototype.getDisplayed = function(){
+  this.displayedItems = [];
+  for(var i = 0; i < this.itemArray.length; i++){
+    if(this.itemArray[i].displayed){
+      this.displayedItems.push(this.itemArray[i]);
+    }
+  }
+}
+
+Game.prototype.checkForHipster = function(){
+  for(var j = 0; j < this.hipsterArray.length; j++){
+    this.hipsterArray[j].checkAffinity(this.displayedItems);
+  }
+  this.hipsterArray.sort(function(hipster1, hipster2){
+    if(hipster1.affinityMeter > hipster2.affinityMeter){
+      return -1;
+    }
+    if(hipster2.affinityMeter > hipster1.affinityMeter){
+      return 1;
+    }
+    return 0;
+  });
+  if(this.hipsterArray[0].affinityMeter === this.hipsterArray[1].affinityMeter){
+    return "nope";
+  } else {
+    return this.hipsterArray[0];
+  }
+}
+
 function Item(type) {
   this.type = type;
   this.inInventory = false;
