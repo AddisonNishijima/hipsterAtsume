@@ -14,16 +14,15 @@
     <div class="jumbotron">
       <h1>Hipster Atsume</h1>
     </div>
-    <div class="dropdown">
-      <button class="btn btn-success btn-lg dropdown-toggle" type="button" data-toggle="dropdown">Menu
-      <span class="caret"></span></button>
-      <ul class="dropdown-menu">
-        <li><a href="#">New Game</a></li>
-        <li><a href="#">Inventory</a></li>
-        <li><a href="#">Instructions</a></li>
-      </ul>
+    <div class="container" id="instruction">
+      <button id="instructions" class="btn btn-success btn-lg" type="button">Instructions
+      </button>
+      <div class="jumbotron">
+        <h3>Instructions</h3>
+      </div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula lobortis, sagittis sem aliquam, rutrum lacus. Nunc volutpat pellentesque mauris, in cursus urna. Aenean quis tristique lacus, sit amet blandit lorem. Vestibulum vel orci vulputate odio eleifend condimentum. Proin lorem lectus, maximus molestie congue nec, gravida a risus. Nulla lectus arcu, volutpat semper lacinia nec, dictum eget ipsum. Donec non libero ex. Morbi congue, felis sed interdum congue, sem metus consequat sapien, eu iaculis augue dui at sem. Morbi gravida tellus ex, nec iaculis augue lobortis facilisis.</p>
     </div>
-    <div class="container" id="yard">
+    <div id="yard">
       <div class="row">
         <div class="col-sm-4"></div>
         <div class="col-sm-4"></div>
@@ -39,9 +38,11 @@
         <div class="col-sm-4"></div>
         <div class="col-sm-4"></div>
       </div>
-      <button type="button" class="btn btn-danger btn-lg">NEW GAME</button><button type="button" class="btn btn-info btn-lg">Store</button><button type="button" class="btn btn-success btn-lg">Inventory</button><button type="button" class="btn btn-warning btn-lg">Clear Items</button>
+      <div class="buttonRow">
+        <button type="button" class="btn btn-danger btn-lg">NEW GAME</button><button type="button" class="btn btn-info btn-lg">Store</button><button type="button" class="btn btn-success btn-lg">Inventory</button><button type="button" class="btn btn-warning btn-lg">Clear Items</button>
+      </div>
     </div>
-    <div class="container-fluid" id="inventory">
+    <div class="container" id="inventory">
       <div class="jumbotron">
         <h3>Inventory</h3>
       </div>
@@ -59,7 +60,6 @@
         <div class="jumbotron">
           <h3>Store</h3>
         </div>
-        <div class="container-fluid">
         <div class="row">
           <div class="col-sm-4"><img src="img/beercan.png"></div>
           <div class="col-sm-4"><img src="img/cigar.png"></div>
@@ -80,7 +80,6 @@
           <div class="col-sm-4">Coming Soon!</div>
           <div class="col-sm-4">Coming Soon!</div>
         </div>
-      </div>
     </div>
     <div id="footer">
       <p>Created by: *INSERT WITTY TEAM NAME HERE*</p>

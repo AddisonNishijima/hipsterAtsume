@@ -6,8 +6,8 @@
   border: 5px dashed black;
 }
 
-.container-fluid {
-
+.container {
+  margin: 0 auto 50px;
 }
 
 .dropdown {
@@ -18,6 +18,32 @@
   border: 3px solid black;
 }
 
+.row {
+  margin: 0 auto;
+}
+
+.buttonRow {
+  text-align: center;
+}
+
+#instruction {
+  /*display: none;*/
+}
+
+#instructions {
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+#yard .row {
+  max-width: 750px;
+}
+
+#inventory .row, #store .row {
+  max-width: 450px;
+}
+
 #inventory .col-sm-4 {
   padding: 10px 10px 10px 10px;
   border: 3px solid black;
@@ -25,12 +51,8 @@
   height: 150px;
 }
 
-#inventory .row {
-  max-width: 750px;
-  margin: auto;
-}
-
 #yard .col-sm-4{
+  padding: 10px 10px 10px 10px;
   border: 1px solid black;
   max-width: 250px;
   height: 250px;
@@ -43,6 +65,7 @@
 }
 
 #inventory .jumbotron {
+  margin-top: 20px;
   text-align: center;
   font-family: 'Gloria Hallelujah', cursive;
   background-color: #d7eb5a;
@@ -57,30 +80,29 @@
   /*display:none;*/
 }
 
-#store .row {
-  max-width: 750px;
-  margin: auto;
-}
-
 #footer{
-
+  margin-top: 100px;
+  text-align: center;
 }
 
 #store .jumbotron {
   text-align: center;
-  margin-top: 20px;
+  margin: 20px auto;
   font-family: 'Gloria Hallelujah', cursive;
   background-color: #d7eb5a;
   border: 5px dashed black;
+  max-width: 450px;
 }
 
 img {
- max-width: 140px;
- max-height: 140px;
+ max-width: 100px;
+ max-height: 100px;
 }
 
 button {
-
+  margin-top: 10px;
+  margin-right: 49px;
+  margin-left: 49px;
 }
 
 body {
