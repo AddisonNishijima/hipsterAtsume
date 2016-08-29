@@ -7,8 +7,7 @@
 }
 
 .container {
-  margin-right: 500px;
-  margin-bottom: 50px;
+  margin: 0 auto 50px;
 }
 
 .dropdown {
@@ -18,6 +17,22 @@
 
 .btn {
   border: 3px solid black;
+}
+
+.row {
+  margin: 0 auto;
+}
+
+.buttonRow {
+  text-align: center;
+}
+
+#yard .row {
+  max-width: 750px;
+}
+
+#inventory .row, .store .row {
+  max-width: 450px;
 }
 
 #inventory .col-sm-4 {
@@ -39,11 +54,9 @@
   font-family: 'Gloria Hallelujah', cursive;
   background-color: #d7eb5a;
   border: 5px dashed black;
-  margin-right: 700px;
 }
 
 #inventory {
-  margin-right: 350px;
   /*display:none;*/
 }
 
@@ -53,16 +66,16 @@
 
 #footer{
   margin-top: 100px;
-  margin-left: 1100px;
+  text-align: center;
 }
 
 #store .jumbotron {
   text-align: center;
-  margin-top: 20px;
+  margin: 20px auto;
   font-family: 'Gloria Hallelujah', cursive;
   background-color: #d7eb5a;
   border: 5px dashed black;
-  margin-right: 700px;
+  max-width: 450px;
 }
 
 img {
@@ -72,7 +85,8 @@ img {
 
 button {
   margin-top: 10px;
-  margin-right: 85px;
+  margin-right: 49px;
+  margin-left: 49px;
 }
 
 body {
