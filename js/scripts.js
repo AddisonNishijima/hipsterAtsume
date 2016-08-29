@@ -8,6 +8,16 @@ Game.prototype.newPlayer = function(){
   return this.progress;
 }
 
+Game.prototype.createItems = function(){
+  this.itemArray = [new Item("beer"), new Item("bikes"), new Item("cigarettes"), new Item("music"), new Item("coffee")];
+}
+
+Game.prototype.createHipster = function(){
+  this.hipsterArray = [new Hipster("beardy",["beer", "bikes", "music"], ["cigarettes", "coffee"]),
+  new Hipster("glasses",["cigarettes", "coffee", "music"], ["beer", "bikes"]),
+new Hipster("hat",["beer", "cigarettes", "coffee"], ["music", "bikes"])];
+}
+
 function Item(type) {
   this.type = type;
   this.inInventory = false;
