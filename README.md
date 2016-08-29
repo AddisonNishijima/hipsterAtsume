@@ -49,6 +49,6 @@ https://github.com/ewajm/hipsterAtsume
 
 * MIT
 
-Copyright (c) 2016 **_Francis Prus, Addison Nishijima, Amber Farringto, Ewa Manek_**
+Copyright (c) 2016 **_Francis Prus, Addison Nishijima, Amber Farrington, Ewa Manek_**
 
 Original Template Copyright (c) 2016 **_Ryan Loos_**
