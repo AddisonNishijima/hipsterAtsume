@@ -15,13 +15,28 @@
       <h1>Hipster Atsume</h1>
       <img id="banner" src="img/potentialbg2.png">
     </div>
-    <button id="instructions" class="btn btn-success btn-lg" type="button">Instructions
+    <button id="toggleInstructions" class="btn btn-success btn-lg" type="button">Toggle Instructions
     </button>
-    <div class="container" id="instruction">
+    <div class="container" id="instructions">
       <div class="jumbotron">
         <h3>Instructions</h3>
       </div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula lobortis, sagittis sem aliquam, rutrum lacus. Nunc volutpat pellentesque mauris, in cursus urna. Aenean quis tristique lacus, sit amet blandit lorem. Vestibulum vel orci vulputate odio eleifend condimentum. Proin lorem lectus, maximus molestie congue nec, gravida a risus. Nulla lectus arcu, volutpat semper lacinia nec, dictum eget ipsum. Donec non libero ex. Morbi congue, felis sed interdum congue, sem metus consequat sapien, eu iaculis augue dui at sem. Morbi gravida tellus ex, nec iaculis augue lobortis facilisis.</p>
+      <div id="instructionContent">
+        <p>Combine items to try to entice hipsters to appear!</p>
+        <p><strong>How to add items to your inventory: </strong></p>
+        <ul>
+          <li>Click an item in the store and it will appear in your inventory!</li>
+          <li>Click it in the store again to remove it from your inventory</li>
+          <li>You can only have 3 inventory items, so choose carefully!</li>
+        </ul>
+        <p><strong>How to add items to the 'yard': </strong></p>
+        <ul>
+          <li>Click an item in the inventory and it will appear in the yard!</li>
+          <li>Click it in the inventory again to remove it from the yard</li>
+          <li>If you get the right combo, a hipster will appear!</li>
+        </ul>
+        <p><strong>Try to collect all the hipsters!!!</strong></p>
+      </div>
     </div>
     <div id="yard">
       <div class="row">
@@ -40,7 +55,7 @@
         <div class="col-sm-4"></div>
       </div>
       <div class="buttonRow">
-        <button type="button" class="btn btn-danger btn-lg">NEW GAME</button><button type="button" class="btn btn-info btn-lg">Store</button><button type="button" class="btn btn-success btn-lg">Inventory</button><button type="button" class="btn btn-warning btn-lg">Clear Items</button>
+        <button id="newGameButton" type="button" class="btn btn-danger btn-lg">NEW GAME</button><button id="storeButton" type="button" class="btn btn-info btn-lg">Store</button><button id="inventoryButton" type="button" class="btn btn-success btn-lg">Inventory</button><button id="clearItemsButton" type="button" class="btn btn-warning btn-lg">Clear Items</button>
       </div>
     </div>
     <div class="container" id="inventory">
@@ -58,28 +73,29 @@
         <div class="col-sm-4"><img src="img/fixedgear.png"></div>
         <div class="col-sm-4"><img src="img/craftbeer.png"></div>
       </div>
-    -->
-      <div id="store">
+    -->  </div>
+      <div class="container" id="store">
         <div class="jumbotron">
           <h3>Store</h3>
+          <span id="fullInventory">Sorry your inventory is full!</span>
         </div>
         <div class="row">
-          <div class="col-sm-4"><img id="beer" src="img/beercan.png"></div>
-          <div class="col-sm-4"><img id="cigarettes" src="img/cigar.png"></div>
-          <div class="col-sm-4"><img id="music" src="img/vinyl.png"></div>
+          <div class="col-sm-4"><img id="beer_pbr" src="img/beercan.png"></div>
+          <div class="col-sm-4"><img id="cigarettes_cigar" src="img/cigar.png"></div>
+          <div class="col-sm-4"><img id="music_vinyl" src="img/vinyl.png"></div>
         </div>
         <div class="row">
-          <div class="col-sm-4"><img id="coffee" src="img/coffee2.png"></div>
-          <div class="col-sm-4"><img id="bikes" src="img/fixedgear.png"></div>
-          <div class="col-sm-4"><img src="img/craftbeer.png"></div>
+          <div class="col-sm-4"><img id="coffee_latte" src="img/coffee2.png"></div>
+          <div class="col-sm-4"><img id="bikes_fixed" src="img/fixedgear.png"></div>
+          <div class="col-sm-4"><img id="beer_craft" src="img/craftbeer.png"></div>
         </div>
         <div class="row">
-          <div class="col-sm-4"><img src="img/cig1.gif"></div>
-          <div class="col-sm-4"><img src="img/bmx.png"></div>
-          <div class="col-sm-4"><img src="img/cd.png"></div>
+          <div class="col-sm-4"><img id="cigarettes_americanSpirit" src="img/cig1.gif"></div>
+          <div class="col-sm-4"><img id="bikes_recumbent" src="img/bmx.png"></div>
+          <div class="col-sm-4"><img id="music_cd" src="img/cd.png"></div>
         </div>
         <div class="row">
-          <div class="col-sm-4"><img src="img/coffee1.png"></div>
+          <div class="col-sm-4"><img id="coffee_drip" src="img/coffee1.png"></div>
           <div class="col-sm-4">Coming Soon!</div>
           <div class="col-sm-4">Coming Soon!</div>
         </div>
