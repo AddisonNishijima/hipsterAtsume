@@ -13,7 +13,6 @@ Game.prototype.newPlayer = function(fieldLength){
     this.displayArea.push(i);
     }
   }
-  console.log(this.displayArea);
   return this.progress;
 }
 
@@ -36,9 +35,9 @@ Game.prototype.addInventory = function(itemType, itemName){
   }
 }
 
-Game.prototype.addDisplay = function(itemName, itemNumber){
+Game.prototype.addDisplay = function(itemType, itemName, itemNumber){
   for(var i = 0; i < this.itemArray.length; i++){
-    if(this.itemArray[i].type === itemName){
+    if(this.itemArray[i].type === itemType && this.itemArray[i].name === itemName){
       this.itemArray[i].toggleDisplay();
       break;
     }
@@ -196,7 +195,6 @@ $(document).ready(function(){
   $("#store img").click(function(){
     var clickedImg = $(this).attr("src");
     var itemIdArray = $(this).attr("id").split("_");
-    console.log(itemIdArray);
     var itemType = itemIdArray[0];
     var itemName = itemIdArray[1];
     //if clicked (store) image has lowOpacity class then it is already in inventory
@@ -234,19 +232,20 @@ $(document).ready(function(){
 
   function inventoryImgClick(){
     //debugger;
-    var clickedItem = $(this).attr("class");
+    var clickedItemArray = $(this).attr("class").split("_");
+    var clickedItemType = clickedItemArray[0];
+    var clickedItemName = clickedItemArray[1];
     var clickedImgSrc = $(this).attr("src");
     var hipster;
     if($(this).hasClass("lowOpacity")){
       //remove
       $(this).removeClass("lowOpacity");
-      clickedItem = $(this).attr("class");
+      clickedItemArray = $(this).attr("class").split("_");
       $("#yard img").each(function(){
         var imgId = $(this).attr("id").split("-");
-        if(imgId[0] === clickedItem){
-          console.log("inside if statement");
+        if(imgId[0] === clickedItemArray.join("_")){
           $(this).remove();
-          newGame.addDisplay(clickedItem, parseInt(imgId[1]));
+          newGame.addDisplay(clickedItemArray[0], clickedItemArray[1], parseInt(imgId[1]));
           hipster = newGame.checkForHipster();
           if(hipster){
             $("#hipsterImage").attr("src", hipster.imgLink);
@@ -265,8 +264,8 @@ $(document).ready(function(){
       var counter = 0;
       $("#yard .row div").each(function(){
         if(counter === randomSquare){
-          $(this).append("<img class='itemImage' id='" + clickedItem + "-"+ randomSquare + "' src='" + clickedImgSrc + "'>");
-          newGame.addDisplay(clickedItem, randomSquare);
+          $(this).append("<img class='itemImage' id='" + clickedItemType + "_" + clickedItemName + "-"+ randomSquare + "' src='" + clickedImgSrc + "'>");
+          newGame.addDisplay(clickedItemType, clickedItemName, randomSquare);
           hipster = newGame.checkForHipster();
           if(hipster){
             $("#hipsterImage").attr("src", hipster.imgLink);
