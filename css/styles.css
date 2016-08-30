@@ -27,12 +27,12 @@
   /*display: none;*/
 }
 
-#instruction p{
+#instructions p{
   color: #455268;
   font-size: 15pt;
 }
 
-#instructions {
+#toggleInstructions {
   display: block;
   margin: auto;
   margin-bottom: 10px;
@@ -42,11 +42,11 @@
   max-width: 750px;
 }
 
-#inventory .row, .store .row {
+#inventory .row, #store .row {
   max-width: 450px;
 }
 
-#inventory .col-sm-4 {
+#inventory .col-sm-4, #store .col-sm-4 {
   background-color: #455268;
   padding: 10px 10px 10px 10px;
   border: 3px solid black;

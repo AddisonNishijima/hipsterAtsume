@@ -89,6 +89,11 @@ Game.prototype.clearDisplay = function(){
     item.displayed = false;
   });
   this.displayedItems = [];
+  for(var i = 0; i < this.displayArea.length; i++){
+    if(!this.displayArea[i] === "hipster"){
+      this.displayArea.push(i);
+    }
+  }
 }
 
 Game.prototype.resetEverything = function(){
@@ -100,6 +105,7 @@ Game.prototype.resetEverything = function(){
     item.inInventory = false;
   });
   this.displayedItems = [];
+  this.displayArea = [];
 }
 
 
@@ -152,6 +158,40 @@ $(document).ready(function(){
   newGame.createItems();
   newGame.createHipster();
 
+  $("#toggleInstructions").click(function(){
+    $("#instructions").toggle();
+  });
+
+  $("#inventoryButton").click(function(){
+    $("#inventory").toggle();
+  });
+
+  $("#storeButton").click(function(){
+    $("#store").toggle();
+  });
+
+  $("#clearItemsButton").click(function(){
+    newGame.clearDisplay();
+    resetDisplay();
+  });
+
+  $("#newGameButton").click(function(){
+    if (confirm("This will completely reset the game, continue?")){
+      newGame.resetEverything();
+    resetDisplay();
+    $("#inventory-row img").remove();
+    $("#store img").removeClass("lowOpacity");
+    newGame.newPlayer($("#yard .row div").length);
+    inventoryItems = 0;
+    }
+  });
+
+  function resetDisplay(){
+    $("#yard img.itemImage").remove();
+    $("#hipsterImage").hide();
+    $("#inventory-row img").removeClass("lowOpacity");
+  }
+
   $("#store img").click(function(){
     var clickedImg = $(this).attr("src");
     var itemId = $(this).attr("id");
@@ -189,7 +229,7 @@ $(document).ready(function(){
   });
 
   function inventoryImgClick(){
-    //debugger;
+    debugger;
     var clickedItem = $(this).attr("class");
     var clickedImgSrc = $(this).attr("src");
     var hipster;
@@ -221,7 +261,7 @@ $(document).ready(function(){
       var counter = 0;
       $("#yard .row div").each(function(){
         if(counter === randomSquare){
-          $(this).append("<img id='" + clickedItem + "-"+ randomSquare + "' src='" + clickedImgSrc + "'>");
+          $(this).append("<img class='itemImage' id='" + clickedItem + "-"+ randomSquare + "' src='" + clickedImgSrc + "'>");
           newGame.addDisplay(clickedItem, randomSquare);
           hipster = newGame.checkForHipster();
           if(hipster){
