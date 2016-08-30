@@ -22,9 +22,9 @@ Game.prototype.createItems = function(){
 }
 
 Game.prototype.createHipster = function(){
-  this.hipsterArray = [new Hipster("beardy",["beer", "bikes", "music"], ["cigarettes", "coffee"]),
-  new Hipster("glasses",["cigarettes", "coffee", "music"], ["beer", "bikes"]),
-new Hipster("hat",["beer", "cigarettes", "coffee"], ["music", "bikes"])];
+  this.hipsterArray = [new Hipster("beardy",["beer", "bikes", "music"], ["cigarettes", "coffee"], "http://dummyimage.com/250x250/000000/fff.png&text=B"),
+  new Hipster("glasses",["cigarettes", "coffee", "music"], ["beer", "bikes"], "http://dummyimage.com/250x250/000000/fff.png&text=G"),
+new Hipster("hat",["beer", "cigarettes", "coffee"], ["music", "bikes"], "http://dummyimage.com/250x250/000000/fff.png&text=H")];
 }
 
 Game.prototype.addInventory = function(itemId){
@@ -60,6 +60,7 @@ Game.prototype.getDisplayed = function(){
 }
 
 Game.prototype.checkForHipster = function(){
+  this.getDisplayed();
   for(var j = 0; j < this.hipsterArray.length; j++){
     this.hipsterArray[j].affinityMeter = 0;
     this.hipsterArray[j].checkAffinity(this.displayedItems);
@@ -74,7 +75,7 @@ Game.prototype.checkForHipster = function(){
     return 0;
   });
   if(this.hipsterArray[0].affinityMeter === this.hipsterArray[1].affinityMeter){
-    return "nope";
+    return false;
   } else {
     return this.hipsterArray[0];
   }
@@ -122,10 +123,11 @@ Item.prototype.toggleDisplay = function(){
   return this.displayed;
 }
 
-function Hipster(type, likedItems, dislikedItems) {
+function Hipster(type, likedItems, dislikedItems, imgLink) {
   this.type = type;
   this.likedItems = likedItems;
   this.dislikedItems =  dislikedItems;
+  this.imgLink = imgLink;
   this.affinityMeter = 0;
 }
 
@@ -190,6 +192,7 @@ $(document).ready(function(){
     //debugger;
     var clickedItem = $(this).attr("class");
     var clickedImgSrc = $(this).attr("src");
+    var hipster;
     if($(this).hasClass("lowOpacity")){
       //remove
       $(this).removeClass("lowOpacity");
@@ -200,9 +203,17 @@ $(document).ready(function(){
           console.log("inside if statement");
           $(this).remove();
           newGame.addDisplay(clickedItem, parseInt(imgId[1]));
+          hipster = newGame.checkForHipster();
+          if(hipster){
+            $("#hipsterImage").attr("src", hipster.imgLink);
+            $("#hipsterImage").show();
+          } else {
+            $("#hipsterImage").hide();
+          }
         }
       });
     } else {
+      //add
       var randomSquare;
       do{
         randomSquare = Math.floor(Math.random() * $("#yard .row div").length);
@@ -212,6 +223,13 @@ $(document).ready(function(){
         if(counter === randomSquare){
           $(this).append("<img id='" + clickedItem + "-"+ randomSquare + "' src='" + clickedImgSrc + "'>");
           newGame.addDisplay(clickedItem, randomSquare);
+          hipster = newGame.checkForHipster();
+          if(hipster){
+            $("#hipsterImage").attr("src", hipster.imgLink);
+            $("#hipsterImage").show();
+          } else {
+            $("#hipsterImage").hide();
+          }
           return false;
         }
         counter++;
