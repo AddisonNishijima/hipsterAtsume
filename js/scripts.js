@@ -22,7 +22,6 @@ Game.prototype.addInventory = function(itemId){
   for(var i = 0; i < this.itemArray.length; i++){
     if(this.itemArray[i].type === itemId){
       this.itemArray[i].toggleInventory();
-      console.log("here is inInventory of this thing" + this.itemArray[i].inInventory)
       return this.itemArray[i].inInventory;
     }
   }
@@ -122,38 +121,41 @@ Hipster.prototype.checkAffinity = function(displayedItems){
 //<!-- Front End  -->
 $(document).ready(function(){
   var inventoryItems = 0;
+  //game initialization
   var newGame = new Game();
   newGame.createItems();
   newGame.createHipster();
+
   $("#store img").click(function(){
-    var found = false;
     var clickedImg = $(this).attr("src");
     var itemId = $(this).attr("id");
+    //if clicked (store) image has lowOpacity class then it is already in inventory
     if($(this).hasClass("lowOpacity")){
+      //find image in inventory and remove it, then remove lowOpacity class from store and toggle inInventory in game object
       $("#inventory-row img").each(function(index){
-        var idNoNumber = $(this).attr("id").replace(/\d/g, "");
-        var idNumber = parseInt($(this).attr("id").replace(/[A-Za-z]/g, ""));
-        if(idNoNumber === itemId && idNumber === inventoryItems){
+        if($(this).hasClass(itemId)){
+          $("#" + itemId).removeClass("lowOpacity");
           $(this).remove();
           newGame.addInventory(itemId);
           inventoryItems--;
-          found = true;
         }
       });
-      if(!found){
-        alert("Please do not remove out of order, moron");
-      } else {
-        $(this).removeClass("lowOpacity");
-      }
     } else {
-      //debugger;
+      //if under 3 items and object does not have lowOpacity class, can add to inventory
       if(inventoryItems < 3){
         if(newGame.addInventory(itemId)){
           inventoryItems++;
-          $("#inventory"+inventoryItems).append("<img id='" + itemId + inventoryItems + "'src='" + clickedImg + "'>");
-          $(this).addClass("lowOpacity");
+          //find first empty div and shove image inside - return false breaks the each loop
+          $("#inventory-row div").each(function(){
+            if(!$(this).html()){
+              $(this).append("<img class='" + itemId + "' src='" + clickedImg + "'>");
+              return false;
+            }
+          });
+          $("#"+ itemId).addClass("lowOpacity");
         }
       } else {
+          //if more than 3 items can't add more
           alert("lolnope");
       }
     }
