@@ -24,11 +24,11 @@ Hipster 3: DUMB FABULOUS HAT
 5 starting items, 3 hipsters
 ----------------------------------------------------------------------------------------------------------------------------
 Tier 2:
-Hipster Tracking - indication that you have collected all hipsters (or all hipsters for that environment)
-Environment
-Resources (collected through hipsters that show up)
-More hipsters, items etc? CHEESE HIPSTER
-Rarity scale (Chance to get rich hipster?)(He’s shiny) (or Beard + glasses + hat: the uber hipster)(Portlandia-based hipsters/other hipsters that are references to things)
+combo: More hipsters, items etc? CHEESE HIPSTER
+frontend: Environment
+combo: Rarity scale (Chance to get rich hipster?)(He’s shiny) (or Beard + glasses + hat: the uber hipster)(Portlandia-based hipsters/other hipsters that are references to things)
+combo: Hipster Tracking - indication that you have collected all hipsters (or all hipsters for that environment)
+backend: Resources (collected through hipsters that show up)
 
 Tier 3:
 Multi-level resources (gold and silver hipstermonies)

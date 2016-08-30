@@ -27,9 +27,14 @@
   /*display: none;*/
 }
 
-#instructions p{
+#instructions p, #instructions li{
   color: #455268;
   font-size: 15pt;
+}
+
+#instructionContent {
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 #toggleInstructions {
