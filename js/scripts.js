@@ -1,10 +1,19 @@
 //<!-- Back End -->
 function Game() {
   this.progress = false;
+  this.displayArea = [];
 }
 
-Game.prototype.newPlayer = function(){
+Game.prototype.newPlayer = function(fieldLength){
   this.progress = true;
+  for(var i = 0; i < fieldLength; i++){
+    if(i === Math.floor(fieldLength/2)){
+      this.displayArea.push("hipster");
+    } else {
+    this.displayArea.push(i);
+    }
+  }
+  console.log(this.displayArea);
   return this.progress;
 }
 
@@ -24,6 +33,20 @@ Game.prototype.addInventory = function(itemId){
       this.itemArray[i].toggleInventory();
       return this.itemArray[i].inInventory;
     }
+  }
+}
+
+Game.prototype.addDisplay = function(itemName, itemNumber){
+  for(var i = 0; i < this.itemArray.length; i++){
+    if(this.itemArray[i].type === itemName){
+      this.itemArray[i].toggleDisplay();
+      break;
+    }
+  }
+  if(isNaN(this.displayArea[itemNumber])){
+    this.displayArea[itemNumber] = itemNumber;
+  } else {
+  this.displayArea[itemNumber] = "full";
   }
 }
 
@@ -123,6 +146,7 @@ $(document).ready(function(){
   var inventoryItems = 0;
   //game initialization
   var newGame = new Game();
+  newGame.newPlayer($("#yard .row div").length);
   newGame.createItems();
   newGame.createHipster();
 
@@ -149,6 +173,7 @@ $(document).ready(function(){
           $("#inventory-row div").each(function(){
             if(!$(this).html()){
               $(this).append("<img class='" + itemId + "' src='" + clickedImg + "'>");
+              $(this).children("img").click(inventoryImgClick);
               return false;
             }
           });
@@ -160,4 +185,39 @@ $(document).ready(function(){
       }
     }
   });
+
+  function inventoryImgClick(){
+    //debugger;
+    var clickedItem = $(this).attr("class");
+    var clickedImgSrc = $(this).attr("src");
+    if($(this).hasClass("lowOpacity")){
+      //remove
+      $(this).removeClass("lowOpacity");
+      clickedItem = $(this).attr("class");
+      $("#yard img").each(function(){
+        var imgId = $(this).attr("id").split("-");
+        if(imgId[0] === clickedItem){
+          console.log("inside if statement");
+          $(this).remove();
+          newGame.addDisplay(clickedItem, parseInt(imgId[1]));
+        }
+      });
+    } else {
+      var randomSquare;
+      do{
+        randomSquare = Math.floor(Math.random() * $("#yard .row div").length);
+      }while(!randomSquare || randomSquare === 4 || isNaN(newGame.displayArea[randomSquare]))
+      var counter = 0;
+      $("#yard .row div").each(function(){
+        if(counter === randomSquare){
+          $(this).append("<img id='" + clickedItem + "-"+ randomSquare + "' src='" + clickedImgSrc + "'>");
+          newGame.addDisplay(clickedItem, randomSquare);
+          return false;
+        }
+        counter++;
+      });
+      $(this).addClass("lowOpacity");
+    }
+  }
+
 });
