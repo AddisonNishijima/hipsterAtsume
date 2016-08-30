@@ -106,6 +106,10 @@
   max-width: 450px;
 }
 
+#banner {
+  max-height: 128px;
+}
+
 #fullInventory {
   display: none;
   font-size: large;
@@ -114,17 +118,26 @@
   letter-spacing: 1px;
 }
 
-#hipsterImage {
-  display: none;
-}
-
 .jumbotron h3 {
   font-size: 30px;
 }
 
-img {
+#store img, #inventory img {
  max-width: 100px;
  max-height: 100px;
+ margin: 0 auto;
+ display: block;
+}
+
+#yard img:not(#hipsterImage) {
+ max-width: 220px;
+ max-height: 220px;
+ display: block;
+ margin: 50px auto 0;
+}
+
+#hipsterImage {
+  max-height: 230px;
 }
 
 button {

@@ -21,9 +21,9 @@ Game.prototype.createItems = function(){
 }
 
 Game.prototype.createHipster = function(){
-  this.hipsterArray = [new Hipster("beardy",["beer", "bikes", "music"], ["cigarettes", "coffee"], "http://dummyimage.com/250x250/000000/fff.png&text=B"),
-  new Hipster("glasses",["cigarettes", "coffee", "music"], ["beer", "bikes"], "http://dummyimage.com/250x250/000000/fff.png&text=G"),
-new Hipster("hat",["beer", "cigarettes", "coffee"], ["music", "bikes"], "http://dummyimage.com/250x250/000000/fff.png&text=H")];
+  this.hipsterArray = [new Hipster("beardy",["beer", "bikes", "music"], ["cigarettes", "coffee"], "img/beardy.png"),
+  new Hipster("glasses",["cigarettes", "coffee", "music"], ["beer", "bikes"], "img/glasses.png"),
+new Hipster("hat",["beer", "cigarettes", "coffee"], ["music", "bikes"], "img/hat.png")];
 }
 
 Game.prototype.addInventory = function(itemType, itemName){
@@ -155,6 +155,7 @@ $(document).ready(function(){
   //game initialization
   var newGame = new Game();
   newGame.newPlayer($("#yard .row div").length);
+  $("#hipsterImage").hide();
   newGame.createItems();
   newGame.createHipster();
 
