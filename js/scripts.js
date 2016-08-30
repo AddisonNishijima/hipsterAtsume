@@ -18,7 +18,7 @@ Game.prototype.newPlayer = function(fieldLength){
 }
 
 Game.prototype.createItems = function(){
-  this.itemArray = [new Item("beer"), new Item("bikes"), new Item("cigarettes"), new Item("music"), new Item("coffee")];
+  this.itemArray = [new Item("pbr", "beer"), new Item("craft", "beer"), new Item("recumbent", "bikes"), new Item("fixed", "bikes"), new Item("cigar", "cigarettes"), new Item("americanSpirit", "cigarettes"), new Item("vinyl", "music"), new Item("cd", "music"), new Item("latte", "coffee"), new Item("drip", "coffee")];
 }
 
 Game.prototype.createHipster = function(){
@@ -27,9 +27,9 @@ Game.prototype.createHipster = function(){
 new Hipster("hat",["beer", "cigarettes", "coffee"], ["music", "bikes"], "http://dummyimage.com/250x250/000000/fff.png&text=H")];
 }
 
-Game.prototype.addInventory = function(itemId){
+Game.prototype.addInventory = function(itemType, itemName){
   for(var i = 0; i < this.itemArray.length; i++){
-    if(this.itemArray[i].type === itemId){
+    if(this.itemArray[i].type === itemType && this.itemArray[i].name === itemName){
       this.itemArray[i].toggleInventory();
       return this.itemArray[i].inInventory;
     }
@@ -109,7 +109,8 @@ Game.prototype.resetEverything = function(){
 }
 
 
-function Item(type) {
+function Item(name, type) {
+  this.name = name;
   this.type = type;
   this.inInventory = false;
   this.displayed = false;
@@ -194,32 +195,35 @@ $(document).ready(function(){
 
   $("#store img").click(function(){
     var clickedImg = $(this).attr("src");
-    var itemId = $(this).attr("id");
+    var itemIdArray = $(this).attr("id").split("_");
+    console.log(itemIdArray);
+    var itemType = itemIdArray[0];
+    var itemName = itemIdArray[1];
     //if clicked (store) image has lowOpacity class then it is already in inventory
     if($(this).hasClass("lowOpacity")){
       //find image in inventory and remove it, then remove lowOpacity class from store and toggle inInventory in game object
       $("#inventory-row img").each(function(index){
-        if($(this).hasClass(itemId)){
-          $("#" + itemId).removeClass("lowOpacity");
+        if($(this).hasClass(itemType + "_" + itemName)){
+          $("#" + itemType + "_" + itemName).removeClass("lowOpacity");
           $(this).remove();
-          newGame.addInventory(itemId);
+          newGame.addInventory(itemType, itemName);
           inventoryItems--;
         }
       });
     } else {
       //if under 3 items and object does not have lowOpacity class, can add to inventory
       if(inventoryItems < 3){
-        if(newGame.addInventory(itemId)){
+        if(newGame.addInventory(itemType, itemName)){
           inventoryItems++;
           //find first empty div and shove image inside - return false breaks the each loop
           $("#inventory-row div").each(function(){
             if(!$(this).html()){
-              $(this).append("<img class='" + itemId + "' src='" + clickedImg + "'>");
+              $(this).append("<img class='" + itemType + "_" + itemName + "' src='" + clickedImg + "'>");
               $(this).children("img").click(inventoryImgClick);
               return false;
             }
           });
-          $("#"+ itemId).addClass("lowOpacity");
+          $("#"+ itemType + "_" + itemName).addClass("lowOpacity");
         }
       } else {
           //if more than 3 items can't add more
@@ -229,7 +233,7 @@ $(document).ready(function(){
   });
 
   function inventoryImgClick(){
-    debugger;
+    //debugger;
     var clickedItem = $(this).attr("class");
     var clickedImgSrc = $(this).attr("src");
     var hipster;
