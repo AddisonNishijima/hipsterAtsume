@@ -106,6 +106,14 @@
   max-width: 450px;
 }
 
+#fullInventory {
+  display: none;
+  font-size: large;
+  color: fuchsia;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
 #hipsterImage {
   display: none;
 }

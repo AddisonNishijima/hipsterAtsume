@@ -225,7 +225,7 @@ $(document).ready(function(){
         }
       } else {
           //if more than 3 items can't add more
-          alert("lolnope");
+          $("#fullInventory").show();
       }
     }
   });
