@@ -193,6 +193,7 @@ $(document).ready(function(){
   }
 
   $("#store img").click(function(){
+    $("#fullInventory").hide();
     var clickedImg = $(this).attr("src");
     var itemIdArray = $(this).attr("id").split("_");
     var itemType = itemIdArray[0];
