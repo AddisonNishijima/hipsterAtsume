@@ -146,6 +146,12 @@ button {
   margin-left: 49px;
 }
 
+#anotherId {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+}
+
 body {
   background-color: #B6C0D2;
 }

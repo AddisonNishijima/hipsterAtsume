@@ -2,10 +2,12 @@
 function Game() {
   this.progress = false;
   this.displayArea = [];
+  this.hipsterTracker;
 }
 
 Game.prototype.newPlayer = function(fieldLength){
   this.progress = true;
+  this.hipsterTracker = 0;
   for(var i = 0; i < fieldLength; i++){
     if(i === Math.floor(fieldLength/2)){
       this.displayArea.push("hipster");
@@ -63,6 +65,7 @@ Game.prototype.getDisplayed = function(){
 
 Game.prototype.checkForHipster = function(){
   this.getDisplayed();
+  var returnHipster;
   for(var j = 0; j < this.hipsterArray.length; j++){
     this.hipsterArray[j].affinityMeter = 0;
     this.hipsterArray[j].checkAffinity(this.displayedItems);
@@ -81,23 +84,28 @@ Game.prototype.checkForHipster = function(){
       var primeReturn = Math.floor(Math.random()*20);
       if(primeReturn === 0){
         if(this.hipsterArray[0].name.endsWith("Prime")){
-          return this.hipsterArray[0];
+          returnHipster = this.hipsterArray[0];
         } else {
-          return this.hipsterArray[1];
+          returnHipster =  this.hipsterArray[1];
         }
       } else {
         if(this.hipsterArray[0].name.endsWith("Prime")){
-          return this.hipsterArray[1];
+          returnHipster =  this.hipsterArray[1];
         } else {
-          return this.hipsterArray[0];
+          returnHipster =  this.hipsterArray[0];
         }
       }
     } else {
-      return false;
+      returnHipster =  false;
     }
   } else {
-    return this.hipsterArray[0];
+    returnHipster =  this.hipsterArray[0];
   }
+  if(returnHipster && !returnHipster.discovered){
+      this.hipsterTracker++;
+      returnHipster.discovered = true;
+  }
+  return returnHipster;
 }
 
 Game.prototype.clearDisplay = function(){
@@ -118,6 +126,7 @@ Game.prototype.clearDisplay = function(){
 Game.prototype.resetEverything = function(){
   this.hipsterArray.forEach(function(hipster){
     hipster.affinityMeter = 0;
+    hipster.discovered = false;
   });
   this.itemArray.forEach(function(item){
     item.displayed = false;
@@ -155,6 +164,7 @@ function Hipster(name, likedItems, dislikedItems, imgLink) {
   this.dislikedItems =  dislikedItems;
   this.imgLink = imgLink;
   this.affinityMeter = 0;
+  this.discovered = false;
 }
 
 Hipster.prototype.checkAffinity = function(displayedItems){
@@ -292,6 +302,7 @@ $(document).ready(function(){
           if(hipster){
             $("#hipsterImage").attr("src", hipster.imgLink);
             $("#hipsterImage").show();
+            $("#hipsterTracker").text(newGame.hipsterTracker);
           } else {
             $("#hipsterImage").hide();
           }
