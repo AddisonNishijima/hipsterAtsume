@@ -26,9 +26,9 @@ Game.prototype.createHipster = function(){
   this.hipsterArray = [new Hipster("beardy",["beer", "bikes", "music"], ["cigarettes", "coffee"], "img/beardy.png"),
   new Hipster("glasses",["cigarettes", "coffee", "music"], ["beer", "bikes"], "img/glasses.png"),
 new Hipster("hat",["beer", "cigarettes", "coffee"], ["music", "bikes"], "img/hat.png"),
-new Hipster("beardyPrime",["craft", "recumbent", "vinyl"], ["pbr", "fixed", "cd", "cigarettes", "coffee"], "http://dummyimage.com/250x250/000000/fff.png&text=BP"),
-new Hipster("glassesPrime",["americanSpirit", "latte", "cd"], ["beer", "bikes", "drip", "cigar", "vinyl"], "http://dummyimage.com/250x250/000000/fff.png&text=GP"),
-new Hipster("hat",["pbr", "cigar", "drip"], ["music", "bikes", "craft", "americanSpirit", "latte"], "http://dummyimage.com/250x250/000000/fff.png&text=HP")];
+new Hipster("beardyPrime",["craft", "recumbent", "vinyl"], ["pbr", "fixed", "cd", "cigarettes", "coffee"], "img/beardyprime.png"),
+new Hipster("glassesPrime",["americanSpirit", "latte", "cd"], ["beer", "bikes", "drip", "cigar", "vinyl"], "img/glassesprime.png"),
+new Hipster("hat",["pbr", "cigar", "drip"], ["music", "bikes", "craft", "americanSpirit", "latte"], "img/hatprime.png")];
 }
 
 Game.prototype.addInventory = function(itemType, itemName){
@@ -206,6 +206,10 @@ $(document).ready(function(){
     resetDisplay();
   });
 
+  $("#anotherId").click(function(){
+    $(".modal").modal();
+  });
+
   $("#newGameButton").click(function(){
     if (confirm("This will completely reset the game, continue?")){
       newGame.resetEverything();
@@ -302,6 +306,7 @@ $(document).ready(function(){
           if(hipster){
             $("#hipsterImage").attr("src", hipster.imgLink);
             $("#hipsterImage").show();
+            $("." + hipster.name).show();
             $("#hipsterTracker").text(newGame.hipsterTracker);
           } else {
             $("#hipsterImage").hide();
