@@ -23,7 +23,10 @@ Game.prototype.createItems = function(){
 Game.prototype.createHipster = function(){
   this.hipsterArray = [new Hipster("beardy",["beer", "bikes", "music"], ["cigarettes", "coffee"], "img/beardy.png"),
   new Hipster("glasses",["cigarettes", "coffee", "music"], ["beer", "bikes"], "img/glasses.png"),
-new Hipster("hat",["beer", "cigarettes", "coffee"], ["music", "bikes"], "img/hat.png")];
+new Hipster("hat",["beer", "cigarettes", "coffee"], ["music", "bikes"], "img/hat.png"),
+new Hipster("beardyPrime",["craft", "recumbent", "vinyl"], ["pbr", "fixed", "cd", "cigarettes", "coffee"], "http://dummyimage.com/250x250/000000/fff.png&text=BP"),
+new Hipster("glassesPrime",["americanSpirit", "latte", "cd"], ["beer", "bikes", "drip", "cigar", "vinyl"], "http://dummyimage.com/250x250/000000/fff.png&text=GP"),
+new Hipster("hat",["pbr", "cigar", "drip"], ["music", "bikes", "craft", "americanSpirit", "latte"], "http://dummyimage.com/250x250/000000/fff.png&text=HP")];
 }
 
 Game.prototype.addInventory = function(itemType, itemName){
@@ -74,7 +77,24 @@ Game.prototype.checkForHipster = function(){
     return 0;
   });
   if(this.hipsterArray[0].affinityMeter === this.hipsterArray[1].affinityMeter){
-    return false;
+    if(this.hipsterArray[0].affinityMeter !== 0 && this.hipsterArray[0].name + "Prime" ===  this.hipsterArray[1].name || this.hipsterArray[1].name + "Prime" ===  this.hipsterArray[0].name){
+      var primeReturn = Math.floor(Math.random()*20);
+      if(primeReturn === 0){
+        if(this.hipsterArray[0].name.endsWith("Prime")){
+          return this.hipsterArray[0];
+        } else {
+          return this.hipsterArray[1];
+        }
+      } else {
+        if(this.hipsterArray[0].name.endsWith("Prime")){
+          return this.hipsterArray[1];
+        } else {
+          return this.hipsterArray[0];
+        }
+      }
+    } else {
+      return false;
+    }
   } else {
     return this.hipsterArray[0];
   }
@@ -129,8 +149,8 @@ Item.prototype.toggleDisplay = function(){
   return this.displayed;
 }
 
-function Hipster(type, likedItems, dislikedItems, imgLink) {
-  this.type = type;
+function Hipster(name, likedItems, dislikedItems, imgLink) {
+  this.name = name;
   this.likedItems = likedItems;
   this.dislikedItems =  dislikedItems;
   this.imgLink = imgLink;
@@ -139,9 +159,9 @@ function Hipster(type, likedItems, dislikedItems, imgLink) {
 
 Hipster.prototype.checkAffinity = function(displayedItems){
   for(var i = 0; i < displayedItems.length; i++){
-    if(this.likedItems.indexOf(displayedItems[i].type) !== -1){
+    if(this.likedItems.indexOf(displayedItems[i].type) !== -1 || this.likedItems.indexOf(displayedItems[i].name) !== -1){
       this.affinityMeter++;
-    } else if(this.dislikedItems.indexOf(displayedItems[i].type) !== -1){
+    } else if(this.dislikedItems.indexOf(displayedItems[i].type || this.dislikedItems.indexOf(displayedItems[i].name) !== -1) !== -1){
       this.affinityMeter--;
     }
   }
