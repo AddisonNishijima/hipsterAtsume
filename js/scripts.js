@@ -343,11 +343,11 @@ $(document).ready(function(){
             $("#hipsterImage").attr("src", hipster.imgLink);
             $("#hipsterImage").show();
             $("." + hipster.name).show();
-            $("#yard span").show();
+            $("#yard p").show();
             $("#hipsterTracker").text(newGame.hipsterTracker);
           } else {
             $("#hipsterImage").hide();
-            $("#yard span").hide();
+            $("#yard p").hide();
           }
           return false;
         }
@@ -373,11 +373,11 @@ $(document).ready(function(){
             $("#hipsterImage").attr("src", hipster.imgLink);
             $("#hipsterImage").show();
             $("." + hipster.name).show();
-            $("#yard span").show();
+            $("#yard p").show();
             $("#hipsterTracker").text(newGame.hipsterTracker);
           } else {
             $("#hipsterImage").hide();
-            $("#yard span").hide();
+            $("#yard p").hide();
           }
           return false;
         }

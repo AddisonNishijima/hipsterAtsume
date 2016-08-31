@@ -87,7 +87,6 @@
 }
 
 #yard .col-sm-4{
-  padding: 10px 10px 10px 10px;
   border: 1px solid black;
   max-width: 250px;
   height: 250px;
@@ -154,22 +153,30 @@
  display: block;
 }
 
-#yard .row img:not(#hipsterImage, .moniesColl) {
+#yard .itemImage {
  max-width: 220px;
  max-height: 220px;
  display: block;
  margin: 50px auto 0;
 }
 
+#yard p {
+  color: white;
+  font-size: medium;
+  text-align: center;
+  border: 1px solid white;
+  background-color: black;
+}
+
 #hipsterImage {
-  max-height: 230px;
+  max-height: 220px;
 }
 
 .hipster-row {
   margin: 0 auto;
 }
 
-.modal-body .col-sm-4 p, .modal-body .col-sm-4 img, #yard span{
+.modal-body .col-sm-4 p, .modal-body .col-sm-4 img, #yard p{
   display: none;
 }
 
