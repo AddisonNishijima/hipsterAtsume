@@ -1,5 +1,5 @@
-
 @media screen and (max-width: 768px) {
+
   #inventory .col-xs-6, #inventory .col-sm-4, #store .col-xs-6, #store .col-sm-4 {
     background-color: #455268;
     padding: 10px 10px 10px 10px;
@@ -30,24 +30,178 @@
   }
 
 }
-#inventory .col-xs-6, #inventory .col-sm-4, #store .col-xs-6, #store .col-sm-4 {
-  background-color: #455268;
-  padding: 10px 10px 10px 10px;
-  border: 3px solid black;
-  max-width: 150px;
-  height: 150px;
-}
+  #inventory .col-xs-6, #inventory .col-sm-4, #store .col-xs-6, #store .col-sm-4 {
+    background-color: #455268;
+    padding: 10px 10px 10px 10px;
+    border: 3px solid black;
+    max-width: 150px;
+    height: 150px;
+  }
 
-#yard .col-xs-4, #yard .col-sm-4{
-  border: 1px solid black;
-  max-width: 250px;
-  height: 250px;
-  background-image: url(../img/grass4.png);
-}
+  #yard .col-xs-4, #yard .col-sm-4{
+    border: 1px solid black;
+    max-width: 250px;
+    height: 250px;
+    background-image: url(../img/grass4.png);
+  }
 
-#inventory .row, #store .row, .hipster-row {
-  max-width: 450px;
-}
+  #inventory .row, #store .row, .hipster-row {
+    max-width: 450px;
+  }
+  #store .col-sm-4 p {
+    color: white;
+  }
+  #store .col-sm-4 img.monies {
+    display:inline-block;
+    width:20px;
+    height:20px;
+  }
+  #instruction {
+    /*display: none;*/
+    float: left;
+  }
+
+  #instructions p, #instructions li{
+    color: #455268;
+    font-size: 15pt;
+  }
+
+  #instructionContent {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  #toggleInstructions {
+    display: block;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+
+  #yard .row {
+    max-width: 750px;
+  }
+
+  #store .row, .hipster-row {
+    max-width: 450px;
+  }
+
+  #inventory .row {
+    max-width: 300px;
+  }
+
+  #inventory .col-sm-6, #store .col-sm-4{
+    background-color: #455268;
+    padding: 10px 10px 10px 10px;
+    border: 3px solid black;
+    max-width: 150px;
+    height: 150px;
+  }
+
+  #yard .col-sm-4{
+    border: 1px solid black;
+    max-width: 250px;
+    height: 250px;
+    background-image: url(../img/grass4.png);
+  }
+
+  #yard .row {
+    max-width: 750px;
+    margin: auto;
+  }
+
+  #inventory .jumbotron {
+    text-align: center;
+    font-family: 'Gloria Hallelujah', cursive;
+    background-color: #d7eb5a;
+    border: 5px dashed black;
+  }
+
+  #inventory {
+    /*display:none;*/
+  }
+
+  #store {
+    /*display:none;*/
+  }
+
+  #store .col-sm-4 {
+    background-color: #455268;
+  }
+
+  #footer{
+    margin-top: 100px;
+    text-align: center;
+  }
+
+  #store .jumbotron {
+    text-align: center;
+    margin: 20px auto;
+    font-family: 'Gloria Hallelujah', cursive;
+    background-color: #d7eb5a;
+    border: 5px dashed black;
+  }
+
+  #banner {
+    max-height: 128px;
+  }
+
+  #fullInventory, #notEnough {
+    display: none;
+    font-size: large;
+    color: fuchsia;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+  #store .storeItem, #inventory img {
+   max-width: 100px;
+   max-height: 100px;
+   margin: 0 auto;
+   display: block;
+  }
+
+  #yard .itemImage {
+   max-width: 220px;
+   max-height: 220px;
+   display: block;
+   margin: 50px auto 0;
+  }
+
+  #yard p {
+    color: white;
+    font-size: medium;
+    text-align: center;
+    border: 1px solid white;
+    background-color: black;
+    padding: 3px;
+  }
+
+  #yard #hipsterImage {
+    max-height: 220px;
+    display: none;
+  }
+
+  #store span.resourceCollected{
+    margin-bottom: 1rem;
+  }
+
+  #anotherId {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    font-size: large;
+    font-family: 'Gloria Hallelujah', cursive;
+    margin-bottom:10px;
+  }
+
+  #anotherId:hover {
+    text-decoration: underline;
+    color: blanchedalmond;
+  }
+
+  .jumbotron h3 {
+    font-size: 30px;
+  }
 
 .jumbotron  {
   text-align: center;
@@ -73,8 +227,7 @@
 .buttonRow {
   text-align: center;
   margin-bottom: 10px;
-}
-
+} 
 
 .modal .col-sm-4, .modal .col-xs-4 {
   background-color: #455268;
@@ -87,144 +240,6 @@
   letter-spacing: 0.2em;
   font-size: 18pt;
   font-family: 'Gloria Hallelujah', cursive;
-}
-
-
-#store .col-sm-4 p {
-  color: white;
-}
-#store .col-sm-4 img.monies {
-  display:inline-block;
-  width:20px;
-  height:20px;
-}
-#instruction {
-  /*display: none;*/
-  float: left;
-}
-
-#instructions p, #instructions li{
-  color: #455268;
-  font-size: 15pt;
-}
-
-#instructionContent {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-#toggleInstructions {
-  display: block;
-  margin: auto;
-  margin-bottom: 10px;
-}
-
-#yard .row {
-  max-width: 750px;
-}
-
-#store .row, .hipster-row {
-  max-width: 450px;
-}
-
-#inventory .row {
-  max-width: 300px;
-}
-
-#inventory .col-sm-6, #store .col-sm-4{
-  background-color: #455268;
-  padding: 10px 10px 10px 10px;
-  border: 3px solid black;
-  max-width: 150px;
-  height: 150px;
-}
-
-#yard .col-sm-4{
-  border: 1px solid black;
-  max-width: 250px;
-  height: 250px;
-  background-image: url(../img/grass4.png);
-}
-
-#yard .row {
-  max-width: 750px;
-  margin: auto;
-}
-
-#inventory .jumbotron {
-  text-align: center;
-  font-family: 'Gloria Hallelujah', cursive;
-  background-color: #d7eb5a;
-  border: 5px dashed black;
-}
-
-#inventory {
-  /*display:none;*/
-}
-
-#store {
-  /*display:none;*/
-}
-
-#store .col-sm-4 {
-  background-color: #455268;
-}
-
-#footer{
-  margin-top: 100px;
-  text-align: center;
-}
-
-#store .jumbotron {
-  text-align: center;
-  margin: 20px auto;
-  font-family: 'Gloria Hallelujah', cursive;
-  background-color: #d7eb5a;
-  border: 5px dashed black;
-}
-
-#banner {
-  max-height: 128px;
-}
-
-#fullInventory, #notEnough {
-  display: none;
-  font-size: large;
-  color: fuchsia;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-.jumbotron h3 {
-  font-size: 30px;
-}
-
-#store .storeItem, #inventory img {
- max-width: 100px;
- max-height: 100px;
- margin: 0 auto;
- display: block;
-}
-
-#yard .itemImage {
- max-width: 220px;
- max-height: 220px;
- display: block;
- margin: 50px auto 0;
-}
-
-#yard p {
-  color: white;
-  font-size: medium;
-  text-align: center;
-  border: 1px solid white;
-  background-color: black;
-  padding: 3px;
-}
-
-#yard #hipsterImage {
-  max-height: 220px;
-  display: none;
 }
 
 .hipster-row {
@@ -254,24 +269,6 @@ span.resourceCollected {
   margin: 0 auto;
   font-size: large;
   font-family: 'Gloria Hallelujah', cursive;
-}
-
-#store span.resourceCollected{
-  margin-bottom: 1rem;
-}
-
-#anotherId {
-  text-align: center;
-  display: block;
-  margin: 0 auto;
-  font-size: large;
-  font-family: 'Gloria Hallelujah', cursive;
-  margin-bottom:10px;
-}
-
-#anotherId:hover {
-  text-decoration: underline;
-  color: blanchedalmond;
 }
 
 body {
