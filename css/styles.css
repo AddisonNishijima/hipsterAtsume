@@ -1,3 +1,47 @@
+
+@media screen and (max-width: 768px) {
+  #inventory .col-xs-6, #inventory .col-sm-4, #store .col-xs-6, #store .col-sm-4 {
+    background-color: #455268;
+    padding: 10px 10px 10px 10px;
+    border: 3px solid black;
+    height: 150px;
+    max-width: 0;
+  }
+
+  #yard .col-xs-4, #yard .col-sm-4{
+    padding: 10px 10px 10px 10px;
+    border: 1px solid black;
+    height: 250px;
+    max-width: 150px;
+    background-image: url(../img/grass4.png);
+  }
+
+  #inventory .row, #store .row, .hipster-row {
+    max-width: 150px;
+  }
+
+}
+
+#inventory .col-xs-6, #inventory .col-sm-4, #store .col-xs-6, #store .col-sm-4 {
+  background-color: #455268;
+  padding: 10px 10px 10px 10px;
+  border: 3px solid black;
+  max-width: 150px;
+  height: 150px;
+}
+
+#yard .col-xs-4, #yard .col-sm-4{
+  padding: 10px 10px 10px 10px;
+  border: 1px solid black;
+  max-width: 250px;
+  height: 250px;
+  background-image: url(../img/grass4.png);
+}
+
+#inventory .row, #store .row, .hipster-row {
+  max-width: 450px;
+}
+
 .jumbotron  {
   text-align: center;
   font-size: 50px;
@@ -23,7 +67,8 @@
   text-align: center;
 }
 
-.modal .col-sm-4 {
+
+.modal .col-sm-4, .modal .col-xs-4 {
   background-color: #455268;
   max-width: 200px;
   height: 200px;
@@ -73,26 +118,6 @@
   max-width: 450px;
 }
 
-#inventory .col-sm-4, #store .col-sm-4 {
-  background-color: #455268;
-  padding: 10px 10px 10px 10px;
-  border: 3px solid black;
-  max-width: 150px;
-  height: 150px;
-}
-
-#yard .col-sm-4{
-  padding: 10px 10px 10px 10px;
-  border: 1px solid black;
-  max-width: 250px;
-  height: 250px;
-  background-image: url(../img/grass4.png);
-}
-
-#yard .row {
-  max-width: 750px;
-  margin: auto;
-}
 
 #inventory .jumbotron {
   margin-top: 20px;
