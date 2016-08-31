@@ -181,6 +181,7 @@ Game.prototype.resetEverything = function(){
   });
   this.displayedItems = [];
   this.displayArea = [];
+  this.userMonies = 6;
 }
 
 function Item(name, type, cost) {
@@ -295,6 +296,7 @@ $(document).ready(function(){
       newGame.newPlayer($("#yard .row div").length);
       $("#yard .col-xs-4, #yard .col-sm-4").css("background-image","url(img/grass4.png)");
       inventoryItems = 0;
+      updateMoniesSpan();
     }
   });
 
