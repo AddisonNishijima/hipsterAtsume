@@ -20,7 +20,16 @@
   }
 
 }
+@media (min-width:992px) and (max-width: 1199px) {
+  #inventory .jumbotron {
+    padding: 0;
+    text-align: center;
+    font-family: 'Gloria Hallelujah', cursive;
+    background-color: #d7eb5a;
+    border: 5px dashed black;
+  }
 
+}
 #inventory .col-xs-6, #inventory .col-sm-4, #store .col-xs-6, #store .col-sm-4 {
   background-color: #455268;
   padding: 10px 10px 10px 10px;
