@@ -4,11 +4,13 @@ function Game() {
   this.displayArea = [];
   this.hipsterTracker;
   this.displayedItems;
+  this.userMonies;
 }
 
 Game.prototype.newPlayer = function(fieldLength){
   this.progress = true;
   this.hipsterTracker = 0;
+  this.userMonies = 0;
   for(var i = 0; i < fieldLength; i++){
     if(i === Math.floor(fieldLength/2)){
       this.displayArea.push("hipster");
@@ -188,7 +190,14 @@ Hipster.prototype.checkAffinity = function(displayedItems){
   }
   return this.affinityMeter;
 }
-
+Hipster.prototype.giveMonies = function () {
+  this.name.endsWith("Prime")
+  if (this.name.endsWith("Prime")) {
+    return Math.floor(Math.random() * (4)) + 2;
+  } else {
+    return Math.floor(Math.random() * (3)) + 1;
+  }
+};
 
 //<!-- Front End  -->
 $(document).ready(function(){

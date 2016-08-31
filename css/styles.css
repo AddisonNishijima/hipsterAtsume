@@ -23,6 +23,28 @@
   text-align: center;
 }
 
+.modal .col-sm-4 {
+  background-color: #455268;
+  max-width: 200px;
+  height: 200px;
+  padding: 10px 10px 10px 10px;
+  border: 3px solid black;
+  color: white;
+  text-align: center;
+  letter-spacing: 0.2em;
+  font-size: 18pt;
+  font-family: 'Gloria Hallelujah', cursive;
+}
+
+
+#store .col-sm-4 p {
+  color: white;
+}
+#store .col-sm-4 img.monies {
+  display:inline-block;
+  width:20px;
+  height:20px;
+}
 #instruction {
   /*display: none;*/
   float: left;
@@ -52,11 +74,15 @@
   max-width: 450px;
 }
 
+<<<<<<< HEAD
 #inventory .row {
   max-width: 300px;
 }
 
 #inventory .col-sm-6, #store .col-sm-4{
+=======
+#inventory .col-sm-4, #store .col-sm-4 {
+>>>>>>> 06f40c31e5a60b65848dbe18b4f8eb2aca6fbdf7
   background-color: #455268;
   padding: 10px 10px 10px 10px;
   border: 3px solid black;
@@ -133,7 +159,7 @@
  display: block;
 }
 
-#yard img:not(#hipsterImage) {
+#yard .row img:not(#hipsterImage) {
  max-width: 220px;
  max-height: 220px;
  display: block;
@@ -148,7 +174,7 @@
   margin: 0 auto;
 }
 
-.modal-body .col-sm-4 h3, .modal-body .col-sm-4 img{
+.modal-body .col-sm-4 p, .modal-body .col-sm-4 img{
   display: none;
 }
 
@@ -158,12 +184,27 @@ button {
   margin-left: 30px;
 }
 
+img#moniesColl {
+  max-width: 20px;
+  max-height: 20px;
+  margin-top: 0;
+  display: inline-block;
+}
+
+span#resourceCollected {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  font-size: large;
+  font-family: 'Gloria Hallelujah', cursive;
+}
 #anotherId {
   text-align: center;
   display: block;
   margin: 0 auto;
   font-size: large;
   font-family: 'Gloria Hallelujah', cursive;
+  margin-bottom:10px;
 }
 
 #anotherId:hover {
