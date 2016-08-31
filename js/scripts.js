@@ -72,16 +72,26 @@ Game.prototype.getDisplayed = function(){
 }
 
 Game.prototype.buyThing = function(itemName){
-  for(var i = 0; i < this.itemArray.length; i++){
-    if(this.itemArray[i].name === itemName){
-      if(this.userMonies >= this.itemArray[i].cost){
-        this.userMonies -= this.itemArray[i].cost;
-        return true;
-      } else {
-        return false;
+  if (itemName === "inventory"){
+    if (this.userMonies >= 20) {
+      this.userMonies -= 20;
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    for(var i = 0; i < this.itemArray.length; i++){
+      if(this.itemArray[i].name === itemName){
+        if(this.userMonies >= this.itemArray[i].cost){
+          this.userMonies -= this.itemArray[i].cost;
+          return true;
+        } else {
+          return false;
+        }
       }
     }
   }
+
 }
 
 Game.prototype.checkForHipster = function(){
@@ -219,6 +229,7 @@ Hipster.prototype.giveMonies = function () {
 //<!-- Front End  -->
 $(document).ready(function(){
   var inventoryItems = 0;
+  var inventoryMax = 4;
   //game initialization
   var newGame = new Game();
   newGame.newPlayer($("#yard .row div").length);
@@ -246,6 +257,28 @@ $(document).ready(function(){
     $(".modal").modal();
   });
 
+  $("#inventory button").click(function(){
+    $("#notEnoughForInventory").hide();
+    var buySuccess = newGame.buyThing("inventory");
+    if (buySuccess && inventoryMax === 4){
+      $(".extraRow").first().show();
+      inventoryMax = 6;
+      updateMoniesSpan();
+    }else if (buySuccess && inventoryMax === 6){
+      $(".extraRow").last().show();
+      inventoryMax = 8;
+      $(this).hide();
+      updateMoniesSpan();
+    } else if(!buySuccess) {
+      $("#notEnoughForInventory").addClass("animated fadeIn");
+      $("#notEnoughForInventory").show();
+      $('#notEnoughForInventory').on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+        $("#notEnoughForInventory").removeClass("animated fadeIn");
+        $("#notEnoughForInventory").fadeOut();
+      });
+    }
+  });
+
   $("#newGameButton").click(function(){
     if (confirm("This will completely reset the game, continue?")){
       newGame.resetEverything();
@@ -260,6 +293,7 @@ $(document).ready(function(){
   function resetDisplay(){
     $("#yard img.itemImage").remove();
     $("#hipsterImage").hide();
+    $("#yard p").hide();
     $(".inventory-row img").removeClass("lowOpacity");
   }
 
@@ -271,7 +305,6 @@ $(document).ready(function(){
     var itemIdArray = $(this).attr("id").split("_");
     var itemType = itemIdArray[0];
     var itemName = itemIdArray[1];
-    var inventoryMax = 4;
     //if clicked (store) image has lowOpacity class then it is already in inventory
     if($(this).hasClass("lowOpacity")){
       //find image in inventory and remove it, then remove lowOpacity class from store and toggle inInventory in game object
