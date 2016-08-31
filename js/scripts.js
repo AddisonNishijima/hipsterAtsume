@@ -10,7 +10,7 @@ function Game() {
 Game.prototype.newPlayer = function(fieldLength){
   this.progress = true;
   this.hipsterTracker = 0;
-  this.userMonies = 0;
+  this.userMonies = 6;
   for(var i = 0; i < fieldLength; i++){
     if(i === Math.floor(fieldLength/2)){
       this.displayArea.push("hipster");
@@ -74,7 +74,7 @@ Game.prototype.getDisplayed = function(){
 Game.prototype.buyThing = function(itemName){
   for(var i = 0; i < this.itemArray.length; i++){
     if(this.itemArray[i].name === itemName){
-      if(this.userMonies > this.itemArray[i].cost){
+      if(this.userMonies >= this.itemArray[i].cost){
         this.userMonies -= this.itemArray[i].cost;
         return true;
       } else {
@@ -222,7 +222,6 @@ $(document).ready(function(){
   //game initialization
   var newGame = new Game();
   newGame.newPlayer($("#yard .row div").length);
-  $("#hipsterImage").hide();
   newGame.createItems();
   newGame.createHipster();
 
@@ -264,8 +263,10 @@ $(document).ready(function(){
     $(".inventory-row img").removeClass("lowOpacity");
   }
 
-  $("#store img").click(function(){
+  //STORE IMAGE CLICK
+  $("#store .storeItem").click(function(){
     $("#fullInventory").hide();
+    $("#notEnough").hide();
     var clickedImg = $(this).attr("src");
     var itemIdArray = $(this).attr("id").split("_");
     var itemType = itemIdArray[0];
@@ -298,18 +299,24 @@ $(document).ready(function(){
     } else {
       //if under 4 items and object does not have lowOpacity class, can add to inventory
       if(inventoryItems < inventoryMax){
-        if(newGame.addInventory(itemType, itemName)){
-          inventoryItems++;
-          //find first empty div and shove image inside - return false breaks the each loop
-          $(".inventory-row div").each(function(){
-            if(!$(this).html()){
-              $(this).append("<img class='" + itemType + "_" + itemName + "' src='" + clickedImg + "'>");
-              $(this).children("img").click(inventoryImgClick);
-              return false;
-            }
-          });
-          $("#"+ itemType + "_" + itemName).addClass("lowOpacity");
+        if (newGame.buyThing(itemName)) {
+          if(newGame.addInventory(itemType, itemName)){
+            inventoryItems++;
+            updateMoniesSpan();
+            //find first empty div and shove image inside - return false breaks the each loop
+            $(".inventory-row div").each(function(){
+              if(!$(this).html()){
+                $(this).append("<img class='" + itemType + "_" + itemName + "' src='" + clickedImg + "'>");
+                $(this).children("img").click(inventoryImgClick);
+                return false;
+              }
+            });
+            $("#"+ itemType + "_" + itemName).addClass("lowOpacity");
+          }
+        } else {
+          $("#notEnough").show();
         }
+
       } else {
           //if more than 4 items can't add more
           $("#fullInventory").show();
@@ -317,6 +324,7 @@ $(document).ready(function(){
     }
   });
 
+  //INVENTORY IMAGE CLICK
   function inventoryImgClick(){
     //debugger;
     var clickedItemArray = $(this).attr("class").split("_");
@@ -325,7 +333,7 @@ $(document).ready(function(){
     var clickedImgSrc = $(this).attr("src");
     var hipster, monies;
     if($(this).hasClass("lowOpacity")){
-      //remove
+      //remove (already in inventory)
       $(this).removeClass("lowOpacity");
       clickedItemArray = $(this).attr("class").split("_");
       $("#yard .itemImage").each(function(){
@@ -353,7 +361,7 @@ $(document).ready(function(){
         }
       });
     } else {
-      //add
+      //add (not yet in inventory)
       var randomSquare;
       do{
         randomSquare = Math.floor(Math.random() * $("#yard .row div").length);
@@ -388,7 +396,7 @@ $(document).ready(function(){
   }
 
   function updateMoniesSpan(){
-    $("#resources").text(newGame.userMonies);
+    $(".resources").text(newGame.userMonies);
   }
 
 });
