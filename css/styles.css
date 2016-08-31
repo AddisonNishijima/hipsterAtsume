@@ -1,7 +1,10 @@
+
 /******************************
           MEDIA QUERIES
 ******************************/
+
 @media screen and (max-width: 768px) {
+
   #inventory .col-xs-6, #inventory .col-sm-4, #store .col-xs-6, #store .col-sm-4 {
     background-color: #455268;
     padding: 10px 10px 10px 10px;
@@ -70,7 +73,6 @@ img.lowOpacity {
           CLASSES
 ******************************/
 
-
 .jumbotron  {
   text-align: center;
   font-size: 50px;
@@ -88,6 +90,14 @@ img.lowOpacity {
   margin: 0 auto 50px;
 }
 
+.modal-body .col-sm-4 p, .modal-body .col-sm-4 img, #yard p, .extraRow{
+  display: none;
+}
+
+.hipster-row {
+  margin: 0 auto;
+}
+
 .btn {
   border: 3px solid black;
 }
@@ -101,14 +111,10 @@ img.lowOpacity {
   margin-bottom: 10px;
 }
 
-.modal-body .col-sm-4 p, .modal-body .col-sm-4 img, #yard p, .extraRow{
-  display: none;
-}
-
 .modal .col-sm-4, .modal .col-xs-4 {
   background-color: #455268;
   max-width: 200px;
-  height: 200px;
+  height: 220px;
   padding: 10px 10px 10px 10px;
   border: 3px solid black;
   color: white;
@@ -118,23 +124,24 @@ img.lowOpacity {
   font-family: 'Gloria Hallelujah', cursive;
 }
 
-.hipster-row {
-  margin: 0 auto;
-}
 
 /******************************
           ID SPECIFIC
 ******************************/
-
 #banner {
   max-height: 128px;
 }
 
-#instruction {
-  /*display: none;*/
-  float: left;
+#toggleInstructions {
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
 }
 
+
+#instructions {
+  display:none;
+}
 #instructions p, #instructions li{
   color: #455268;
   font-size: 15pt;
@@ -143,12 +150,6 @@ img.lowOpacity {
 #instructionContent {
   max-width: 600px;
   margin: 0 auto;
-}
-
-#toggleInstructions {
-  display: block;
-  margin: auto;
-  margin-bottom: 10px;
 }
 
 #anotherId {
@@ -164,30 +165,6 @@ img.lowOpacity {
   text-decoration: underline;
   color: blanchedalmond;
 }
-
-#yard .col-xs-4, #yard .col-sm-4{
-  border: 1px solid black;
-  max-width: 250px;
-  height: 250px;
-  background-image: url(../img/grass4.png);
-}
-
-#yard .row {
-  max-width: 750px;
-}
-
-#yard .col-sm-4{
-  border: 1px solid black;
-  max-width: 250px;
-  height: 250px;
-  background-image: url(../img/grass4.png);
-}
-
-#yard .row {
-  max-width: 750px;
-  margin: auto;
-}
-
 
 #yard .itemImage {
  max-width: 220px;
@@ -210,23 +187,23 @@ img.lowOpacity {
   display: none;
 }
 
-#inventory .col-xs-6, #inventory .col-sm-4, #store .col-xs-6, #store .col-sm-4 {
-  background-color: #455268;
-  padding: 10px 10px 10px 10px;
-  border: 3px solid black;
-  max-width: 150px;
-  height: 150px;
+#yard .row {
+  max-width: 750px;
+  margin: auto;
 }
 
-#inventory .row, #store .row, .hipster-row {
-  max-width: 450px;
+#yard .col-xs-4, #yard .col-sm-4{
+  border: 1px solid black;
+  max-width: 250px;
+  height: 250px;
+  background-image: url(../img/grass4.png);
 }
 
 #inventory .row {
   max-width: 300px;
 }
 
-#inventory .col-sm-6, #store .col-sm-4{
+#inventory .col-xs-6, #inventory .col-sm-4, #store .col-xs-6, #store .col-sm-4 {
   background-color: #455268;
   padding: 10px 10px 10px 10px;
   border: 3px solid black;
@@ -250,17 +227,30 @@ img.lowOpacity {
   max-width: 450px;
 }
 
-#store .col-sm-4 {
-  background-color: #455268;
-}
-
-#store .col-sm-4 p {
-  color: white;
-}
 #store .col-sm-4 img.monies {
   display:inline-block;
   width:20px;
   height:20px;
+}
+
+#store .col-sm-4 {
+  background-color: #455268;
+}
+
+#fullInventory, #notEnough, #notEnoughForInventory {
+  display: none;
+  font-size: large;
+  color: fuchsia;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+#store span.resourceCollected{
+  margin-bottom: 1rem;
+}
+
+#store .col-sm-4 p {
+  color: white;
 }
 
 #store .jumbotron {
@@ -276,18 +266,6 @@ img.lowOpacity {
  max-height: 100px;
  margin: 0 auto;
  display: block;
-}
-
-#fullInventory, #notEnough, #notEnoughForInventory {
-  display: none;
-  font-size: large;
-  color: fuchsia;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-#store span.resourceCollected{
-  margin-bottom: 1rem;
 }
 
 #footer{
