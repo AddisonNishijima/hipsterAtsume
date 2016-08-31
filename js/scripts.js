@@ -21,8 +21,13 @@ Game.prototype.newPlayer = function(fieldLength){
   return this.progress;
 }
 
+Game.prototype.addMonies = function(amountToAdd){
+  this.userMonies += amountToAdd;
+  return this.userMonies;
+}
+
 Game.prototype.createItems = function(){
-  this.itemArray = [new Item("pbr", "beer"), new Item("craft", "beer"), new Item("recumbent", "bikes"), new Item("fixed", "bikes"), new Item("cigar", "cigarettes"), new Item("americanSpirit", "cigarettes"), new Item("vinyl", "music"), new Item("cd", "music"), new Item("latte", "coffee"), new Item("drip", "coffee")];
+  this.itemArray = [new Item("pbr", "beer", 2), new Item("craft", "beer", 5), new Item("recumbent", "bikes", 10), new Item("fixed", "bikes", 7), new Item("cigar", "cigarettes", 6), new Item("americanSpirit", "cigarettes", 4), new Item("vinyl", "music", 8), new Item("cd", "music", 3), new Item("latte", "coffee", 5), new Item("drip", "coffee", 3)];
 }
 
 Game.prototype.createHipster = function(){
@@ -62,6 +67,19 @@ Game.prototype.getDisplayed = function(){
   for(var i = 0; i < this.itemArray.length; i++){
     if(this.itemArray[i].displayed){
       this.displayedItems.push(this.itemArray[i]);
+    }
+  }
+}
+
+Game.prototype.buyThing = function(itemName){
+  for(var i = 0; i < this.itemArray.length; i++){
+    if(this.itemArray[i].name === itemName){
+      if(this.userMonies > this.itemArray[i].cost){
+        this.userMonies -= this.itemArray[i].cost;
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 }
@@ -117,8 +135,6 @@ Game.prototype.checkForHipster = function(){
       this.hipsterTracker++;
       returnHipster.discovered = true;
   }
-  console.log(this.hipsterArray);
-  console.log(returnHipster);
   return returnHipster;
 }
 
@@ -150,9 +166,10 @@ Game.prototype.resetEverything = function(){
   this.displayArea = [];
 }
 
-function Item(name, type) {
+function Item(name, type, cost) {
   this.name = name;
   this.type = type;
+  this.cost = cost;
   this.inInventory = false;
   this.displayed = false;
 }
@@ -306,22 +323,31 @@ $(document).ready(function(){
     var clickedItemType = clickedItemArray[0];
     var clickedItemName = clickedItemArray[1];
     var clickedImgSrc = $(this).attr("src");
-    var hipster;
+    var hipster, monies;
     if($(this).hasClass("lowOpacity")){
       //remove
       $(this).removeClass("lowOpacity");
       clickedItemArray = $(this).attr("class").split("_");
-      $("#yard img").each(function(){
+      $("#yard .itemImage").each(function(){
         var imgId = $(this).attr("id").split("-");
         if(imgId[0] === clickedItemArray.join("_")){
           $(this).remove();
           newGame.addDisplay(clickedItemArray[0], clickedItemArray[1], parseInt(imgId[1]));
           hipster = newGame.checkForHipster();
           if(hipster){
+            monies = hipster.giveMonies();
+            newGame.addMonies(monies);
+            updateMoniesSpan();
+            $("#hipsterName").text(hipster.name);
+            $("#hipsterGiveAmt").text(monies);
             $("#hipsterImage").attr("src", hipster.imgLink);
             $("#hipsterImage").show();
+            $("." + hipster.name).show();
+            $("#yard span").show();
+            $("#hipsterTracker").text(newGame.hipsterTracker);
           } else {
             $("#hipsterImage").hide();
+            $("#yard span").hide();
           }
           return false;
         }
@@ -339,12 +365,19 @@ $(document).ready(function(){
           newGame.addDisplay(clickedItemType, clickedItemName, randomSquare);
           hipster = newGame.checkForHipster();
           if(hipster){
+            monies = hipster.giveMonies();
+            newGame.addMonies(monies);
+            updateMoniesSpan();
+            $("#hipsterName").text(hipster.name);
+            $("#hipsterGiveAmt").text(monies);
             $("#hipsterImage").attr("src", hipster.imgLink);
             $("#hipsterImage").show();
             $("." + hipster.name).show();
+            $("#yard span").show();
             $("#hipsterTracker").text(newGame.hipsterTracker);
           } else {
             $("#hipsterImage").hide();
+            $("#yard span").hide();
           }
           return false;
         }
@@ -352,6 +385,10 @@ $(document).ready(function(){
       });
       $(this).addClass("lowOpacity");
     }
+  }
+
+  function updateMoniesSpan(){
+    $("#resources").text(newGame.userMonies);
   }
 
 });

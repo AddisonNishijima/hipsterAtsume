@@ -74,15 +74,11 @@
   max-width: 450px;
 }
 
-<<<<<<< HEAD
 #inventory .row {
   max-width: 300px;
 }
 
 #inventory .col-sm-6, #store .col-sm-4{
-=======
-#inventory .col-sm-4, #store .col-sm-4 {
->>>>>>> 06f40c31e5a60b65848dbe18b4f8eb2aca6fbdf7
   background-color: #455268;
   padding: 10px 10px 10px 10px;
   border: 3px solid black;
@@ -104,7 +100,6 @@
 }
 
 #inventory .jumbotron {
-  margin-top: 20px;
   text-align: center;
   font-family: 'Gloria Hallelujah', cursive;
   background-color: #d7eb5a;
@@ -159,7 +154,7 @@
  display: block;
 }
 
-#yard .row img:not(#hipsterImage) {
+#yard .row img:not(#hipsterImage, .moniesColl) {
  max-width: 220px;
  max-height: 220px;
  display: block;
@@ -174,7 +169,7 @@
   margin: 0 auto;
 }
 
-.modal-body .col-sm-4 p, .modal-body .col-sm-4 img{
+.modal-body .col-sm-4 p, .modal-body .col-sm-4 img, #yard span{
   display: none;
 }
 
@@ -184,7 +179,7 @@ button {
   margin-left: 30px;
 }
 
-img#moniesColl {
+img.moniesColl {
   max-width: 20px;
   max-height: 20px;
   margin-top: 0;
