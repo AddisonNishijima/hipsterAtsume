@@ -261,7 +261,7 @@ img.lowOpacity {
   border: 5px dashed black;
 }
 
-#store .storeItem, .inventory-row img {
+#store .storeItem, #store .bgItem, .inventory-row img {
  max-width: 100px;
  max-height: 100px;
  margin: 0 auto;

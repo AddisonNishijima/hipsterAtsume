@@ -79,7 +79,14 @@ Game.prototype.buyThing = function(itemName){
     } else {
       return false;
     }
-  } else {
+  } else if (itemName === "bg") {
+    if (this.userMonies >= 50) {
+      this.userMonies -= 50;
+      return true;
+    } else {
+      return false;
+    }
+  }else {
     for(var i = 0; i < this.itemArray.length; i++){
       if(this.itemArray[i].name === itemName){
         if(this.userMonies >= this.itemArray[i].cost){
@@ -282,11 +289,12 @@ $(document).ready(function(){
   $("#newGameButton").click(function(){
     if (confirm("This will completely reset the game, continue?")){
       newGame.resetEverything();
-    resetDisplay();
-    $(".inventory-row img").remove();
-    $("#store img").removeClass("lowOpacity");
-    newGame.newPlayer($("#yard .row div").length);
-    inventoryItems = 0;
+      resetDisplay();
+      $(".inventory-row img").remove();
+      $("#store img").removeClass("lowOpacity");
+      newGame.newPlayer($("#yard .row div").length);
+      $("#yard .col-xs-4, #yard .col-sm-4").css("background-image","url(img/grass4.png)");
+      inventoryItems = 0;
     }
   });
 
@@ -354,6 +362,19 @@ $(document).ready(function(){
           //if more than 4 items can't add more
           $("#fullInventory").show();
       }
+    }
+  });
+
+  $("#store .bgItem").click(function(){
+    var bgImgSrc= $(this).attr('src');
+    if (!$(this).hasClass("lowOpacity")) {
+      if (newGame.buyThing("bg")) {
+        $("#yard .col-xs-4, #yard .col-sm-4").css("background-image","url("+bgImgSrc+")");
+        $(this).addClass("lowOpacity");
+        updateMoniesSpan();
+      }
+    } else {
+      $("#yard .col-xs-4, #yard .col-sm-4").css("background-image","url("+bgImgSrc+")");
     }
   });
 
