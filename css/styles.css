@@ -44,7 +44,7 @@
   border: 1px solid black;
   max-width: 250px;
   height: 250px;
-  background-image: url(../img/grass4.png);
+  background-image: url(../img/environment2.jpg);
 }
 
 #inventory .row, #store .row, .hipster-row {
@@ -145,7 +145,7 @@
   border: 1px solid black;
   max-width: 250px;
   height: 250px;
-  background-image: url(../img/grass4.png);
+  background-image: url(../img/environment2.jpg);
 }
 
 #yard .row {
