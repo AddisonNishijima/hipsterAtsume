@@ -2,10 +2,13 @@
 function Game() {
   this.progress = false;
   this.displayArea = [];
+  this.hipsterTracker;
+  this.displayedItems;
 }
 
 Game.prototype.newPlayer = function(fieldLength){
   this.progress = true;
+  this.hipsterTracker = 0;
   for(var i = 0; i < fieldLength; i++){
     if(i === Math.floor(fieldLength/2)){
       this.displayArea.push("hipster");
@@ -21,9 +24,12 @@ Game.prototype.createItems = function(){
 }
 
 Game.prototype.createHipster = function(){
-  this.hipsterArray = [new Hipster("beardy",["beer", "bikes", "music"], ["cigarettes", "coffee"], "http://dummyimage.com/250x250/000000/fff.png&text=B"),
-  new Hipster("glasses",["cigarettes", "coffee", "music"], ["beer", "bikes"], "http://dummyimage.com/250x250/000000/fff.png&text=G"),
-new Hipster("hat",["beer", "cigarettes", "coffee"], ["music", "bikes"], "http://dummyimage.com/250x250/000000/fff.png&text=H")];
+  this.hipsterArray = [new Hipster("beardy",["beer", "bikes", "music"], ["cigarettes", "coffee"], "img/beardy.png"),
+  new Hipster("glasses",["cigarettes", "coffee", "music"], ["beer", "bikes"], "img/glasses.png"),
+new Hipster("hat",["beer", "cigarettes", "coffee"], ["music", "bikes"], "img/hat.png"),
+new Hipster("beardyPrime",["craft", "recumbent", "vinyl"], ["pbr", "fixed", "cd", "cigarettes", "coffee"], "img/beardyprime.png"),
+new Hipster("glassesPrime",["americanSpirit", "latte", "cd"], ["beer", "bikes", "drip", "cigar", "vinyl"], "img/glassesprime.png"),
+new Hipster("hat",["pbr", "cigar", "drip"], ["music", "bikes", "craft", "americanSpirit", "latte"], "img/hatprime.png")];
 }
 
 Game.prototype.addInventory = function(itemType, itemName){
@@ -60,6 +66,7 @@ Game.prototype.getDisplayed = function(){
 
 Game.prototype.checkForHipster = function(){
   this.getDisplayed();
+  var returnHipster;
   for(var j = 0; j < this.hipsterArray.length; j++){
     this.hipsterArray[j].affinityMeter = 0;
     this.hipsterArray[j].checkAffinity(this.displayedItems);
@@ -74,10 +81,32 @@ Game.prototype.checkForHipster = function(){
     return 0;
   });
   if(this.hipsterArray[0].affinityMeter === this.hipsterArray[1].affinityMeter){
-    return false;
+    if(this.hipsterArray[0].affinityMeter !== 0 && this.hipsterArray[0].name + "Prime" ===  this.hipsterArray[1].name || this.hipsterArray[1].name + "Prime" ===  this.hipsterArray[0].name){
+      var primeReturn = Math.floor(Math.random()*20);
+      if(primeReturn === 0){
+        if(this.hipsterArray[0].name.endsWith("Prime")){
+          returnHipster = this.hipsterArray[0];
+        } else {
+          returnHipster =  this.hipsterArray[1];
+        }
+      } else {
+        if(this.hipsterArray[0].name.endsWith("Prime")){
+          returnHipster =  this.hipsterArray[1];
+        } else {
+          returnHipster =  this.hipsterArray[0];
+        }
+      }
+    } else {
+      returnHipster =  false;
+    }
   } else {
-    return this.hipsterArray[0];
+    returnHipster =  this.hipsterArray[0];
   }
+  if(returnHipster && !returnHipster.discovered){
+      this.hipsterTracker++;
+      returnHipster.discovered = true;
+  }
+  return returnHipster;
 }
 
 Game.prototype.clearDisplay = function(){
@@ -89,8 +118,8 @@ Game.prototype.clearDisplay = function(){
   });
   this.displayedItems = [];
   for(var i = 0; i < this.displayArea.length; i++){
-    if(!this.displayArea[i] === "hipster"){
-      this.displayArea.push(i);
+    if(!(this.displayArea[i] === "hipster")){
+      this.displayArea[i] = i;
     }
   }
 }
@@ -98,6 +127,7 @@ Game.prototype.clearDisplay = function(){
 Game.prototype.resetEverything = function(){
   this.hipsterArray.forEach(function(hipster){
     hipster.affinityMeter = 0;
+    hipster.discovered = false;
   });
   this.itemArray.forEach(function(item){
     item.displayed = false;
@@ -106,7 +136,6 @@ Game.prototype.resetEverything = function(){
   this.displayedItems = [];
   this.displayArea = [];
 }
-
 
 function Item(name, type) {
   this.name = name;
@@ -129,19 +158,20 @@ Item.prototype.toggleDisplay = function(){
   return this.displayed;
 }
 
-function Hipster(type, likedItems, dislikedItems, imgLink) {
-  this.type = type;
+function Hipster(name, likedItems, dislikedItems, imgLink) {
+  this.name = name;
   this.likedItems = likedItems;
   this.dislikedItems =  dislikedItems;
   this.imgLink = imgLink;
   this.affinityMeter = 0;
+  this.discovered = false;
 }
 
 Hipster.prototype.checkAffinity = function(displayedItems){
   for(var i = 0; i < displayedItems.length; i++){
-    if(this.likedItems.indexOf(displayedItems[i].type) !== -1){
+    if(this.likedItems.indexOf(displayedItems[i].type) !== -1 || this.likedItems.indexOf(displayedItems[i].name) !== -1){
       this.affinityMeter++;
-    } else if(this.dislikedItems.indexOf(displayedItems[i].type) !== -1){
+    } else if(this.dislikedItems.indexOf(displayedItems[i].type || this.dislikedItems.indexOf(displayedItems[i].name) !== -1) !== -1){
       this.affinityMeter--;
     }
   }
@@ -155,6 +185,7 @@ $(document).ready(function(){
   //game initialization
   var newGame = new Game();
   newGame.newPlayer($("#yard .row div").length);
+  $("#hipsterImage").hide();
   newGame.createItems();
   newGame.createHipster();
 
@@ -173,6 +204,10 @@ $(document).ready(function(){
   $("#clearItemsButton").click(function(){
     newGame.clearDisplay();
     resetDisplay();
+  });
+
+  $("#anotherId").click(function(){
+    $(".modal").modal();
   });
 
   $("#newGameButton").click(function(){
@@ -201,6 +236,19 @@ $(document).ready(function(){
     //if clicked (store) image has lowOpacity class then it is already in inventory
     if($(this).hasClass("lowOpacity")){
       //find image in inventory and remove it, then remove lowOpacity class from store and toggle inInventory in game object
+      var itemIndex = newGame.displayedItems.findIndex(function(item){
+        return (item.type === itemType && item.name === itemName);
+      });
+      if(itemIndex !== -1){
+        $("#yard .itemImage").each(function(){
+          var yardImgId = $(this).attr("id").split("-");
+          if(yardImgId[0] === (itemType + "_" + itemName)){
+            newGame.displayArea[parseInt(yardImgId[1])] = parseInt(yardImgId[1]);
+            $(this).remove();
+            return false;
+          }
+        });
+      }
       $("#inventory-row img").each(function(index){
         if($(this).hasClass(itemType + "_" + itemName)){
           $("#" + itemType + "_" + itemName).removeClass("lowOpacity");
@@ -254,6 +302,7 @@ $(document).ready(function(){
           } else {
             $("#hipsterImage").hide();
           }
+          return false;
         }
       });
     } else {
@@ -271,6 +320,8 @@ $(document).ready(function(){
           if(hipster){
             $("#hipsterImage").attr("src", hipster.imgLink);
             $("#hipsterImage").show();
+            $("." + hipster.name).show();
+            $("#hipsterTracker").text(newGame.hipsterTracker);
           } else {
             $("#hipsterImage").hide();
           }

@@ -47,11 +47,11 @@
   max-width: 750px;
 }
 
-#inventory .row, #store .row {
+#inventory .row, #store .row, .hipster-row {
   max-width: 450px;
 }
 
-#inventory .col-sm-4, #store .col-sm-4 {
+#inventory .col-sm-4, #store .col-sm-4, .modal .col-sm-4 {
   background-color: #455268;
   padding: 10px 10px 10px 10px;
   border: 3px solid black;
@@ -106,6 +106,10 @@
   max-width: 450px;
 }
 
+#banner {
+  max-height: 128px;
+}
+
 #fullInventory {
   display: none;
   font-size: large;
@@ -114,23 +118,53 @@
   letter-spacing: 1px;
 }
 
-#hipsterImage {
-  display: none;
-}
-
 .jumbotron h3 {
   font-size: 30px;
 }
 
-img {
+#store img, #inventory img {
  max-width: 100px;
  max-height: 100px;
+ margin: 0 auto;
+ display: block;
+}
+
+#yard img:not(#hipsterImage) {
+ max-width: 220px;
+ max-height: 220px;
+ display: block;
+ margin: 50px auto 0;
+}
+
+#hipsterImage {
+  max-height: 230px;
+}
+
+.hipster-row {
+  margin: 0 auto;
+}
+
+.modal-body .col-sm-4 h3, .modal-body .col-sm-4 img{
+  display: none;
 }
 
 button {
   margin-top: 10px;
   margin-right: 49px;
   margin-left: 49px;
+}
+
+#anotherId {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  font-size: large;
+  font-family: 'Gloria Hallelujah', cursive;
+}
+
+#anotherId:hover {
+  text-decoration: underline;
+  color: blanchedalmond;
 }
 
 body {

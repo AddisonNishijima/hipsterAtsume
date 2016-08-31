@@ -38,7 +38,8 @@
         <p><strong>Try to collect all the hipsters!!!</strong></p>
       </div>
     </div>
-    <div id="yard">
+    <div class="container" id="yard">
+      <span id="anotherId">Total hipsters found: <span id="hipsterTracker">0</span> out of 6</span>
       <div class="row">
         <div class="col-sm-4"></div>
         <div class="col-sm-4"></div>
@@ -46,7 +47,7 @@
       </div>
       <div class="row">
         <div class="col-sm-4"></div>
-        <div class="col-sm-4"><img id="hipsterImage" src="http://dummyimage.com/250x250/000000/fff.png&text=H"></div>
+        <div class="col-sm-4"><img id="hipsterImage" class="img-responsive" src="http://dummyimage.com/250x250/000000/fff.png&text=H"></div>
         <div class="col-sm-4"></div>
       </div>
       <div class="row">
@@ -73,7 +74,8 @@
         <div class="col-sm-4"><img src="img/fixedgear.png"></div>
         <div class="col-sm-4"><img src="img/craftbeer.png"></div>
       </div>
-    -->  </div>
+    -->
+    </div>
       <div class="container" id="store">
         <div class="jumbotron">
           <h3>Store</h3>
@@ -90,8 +92,8 @@
           <div class="col-sm-4"><img id="beer_craft" src="img/craftbeer.png"></div>
         </div>
         <div class="row">
-          <div class="col-sm-4"><img id="cigarettes_americanSpirit" src="img/cig1.gif"></div>
-          <div class="col-sm-4"><img id="bikes_recumbent" src="img/bmx.png"></div>
+          <div class="col-sm-4"><img id="cigarettes_americanSpirit" src="img/cigarette.png"></div>
+          <div class="col-sm-4"><img id="bikes_recumbent" src="img/recumbent.png"></div>
           <div class="col-sm-4"><img id="music_cd" src="img/cd.png"></div>
         </div>
         <div class="row">
@@ -100,6 +102,49 @@
           <div class="col-sm-4">Coming Soon!</div>
         </div>
     </div>
+    <div class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Hipster Album</h4>
+          </div>
+          <div class="modal-body">
+            <div class="hipster-row row">
+              <div class="col-sm-4">
+                <h3 class="beardy">Beardy</h3>
+                <img class = "beardy img-responsive" src="img/beardy.png">
+              </div>
+              <div class="col-sm-4">
+                <h3 class="glasses">Glasses</h3>
+                <img class = "glasses img-responsive" src="img/glasses.png">
+              </div>
+              <div class="col-sm-4">
+                <h3 class="hat">Hat</h3>
+                <img class = "hat img-responsive" src="img/hat.png">
+              </div>
+            </div>
+            <div class="hipster-row row">
+              <div class="col-sm-4">
+                <h3 class="beardyPrime">Beardy Prime</h3>
+                <img class = "beardyPrime img-responsive" src="img/beardyprime.png">
+              </div>
+              <div class="col-sm-4">
+                <h3 class="glassesPrime">Glasses Prime</h3>
+                <img class = "glassesPrime img-responsive" src="img/glassesprime.png">
+              </div>
+              <div class="col-sm-4">
+                <h3 class="hatPrime">Hat Prime</h3>
+                <img class = "hatPrime img-responsive" src="img/hatprime.png">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     <div id="footer">
       <p>Created by: *INSERT WITTY TEAM NAME HERE*</p>
     </div>
