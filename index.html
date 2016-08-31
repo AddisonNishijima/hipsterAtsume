@@ -27,7 +27,7 @@
         <ul>
           <li>Click an item in the store and it will appear in your inventory!</li>
           <li>Click it in the store again to remove it from your inventory</li>
-          <li>You can only have 3 inventory items, so choose carefully!</li>
+          <li>You can only have 4 inventory items, so choose carefully!</li>
         </ul>
         <p><strong>How to add items to the 'yard': </strong></p>
         <ul>
@@ -38,44 +38,51 @@
         <p><strong>Try to collect all the hipsters!!!</strong></p>
       </div>
     </div>
-    <div class="container" id="yard">
-      <span id="anotherId">Total hipsters found: <span id="hipsterTracker">0</span> out of 6</span>
-      <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4"></div>
-      </div>
-      <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4"><img id="hipsterImage" class="img-responsive" src="http://dummyimage.com/250x250/000000/fff.png&text=H"></div>
-        <div class="col-sm-4"></div>
-      </div>
-      <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4"></div>
-      </div>
-      <div class="buttonRow">
-        <button id="newGameButton" type="button" class="btn btn-danger btn-lg">NEW GAME</button><button id="storeButton" type="button" class="btn btn-info btn-lg">Store</button><button id="inventoryButton" type="button" class="btn btn-success btn-lg">Inventory</button><button id="clearItemsButton" type="button" class="btn btn-warning btn-lg">Clear Items</button>
-      </div>
-    </div>
-    <div class="container" id="inventory">
-      <div class="jumbotron">
-        <h3>Inventory</h3>
-      </div>
-      <div id = "inventory-row" class="row">
-        <div id="inventory1" class="col-sm-4"></div>
-        <div id="inventory2" class="col-sm-4"></div>
-        <div id="inventory3" class="col-sm-4"></div>
-      </div>
-      <!--
-      <div class="row">
-        <div class="col-sm-4"><img src="img/coffee2.png"></div>
-        <div class="col-sm-4"><img src="img/fixedgear.png"></div>
-        <div class="col-sm-4"><img src="img/craftbeer.png"></div>
-      </div>
-    -->
-    </div>
+    <div class="container">
+      <div class = "row">
+        <div class="col-sm-8" id="yard">
+          <span id="anotherId">Total hipsters found: <span id="hipsterTracker">0</span> out of 6</span>
+          <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4"></div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4"><img id="hipsterImage" class="img-responsive" src="http://dummyimage.com/250x250/000000/fff.png&text=H"></div>
+            <div class="col-sm-4"></div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4"></div>
+          </div>
+          <div class="buttonRow">
+            <button id="newGameButton" type="button" class="btn btn-danger btn-lg">NEW GAME</button><button id="storeButton" type="button" class="btn btn-info btn-lg">Store</button><button id="inventoryButton" type="button" class="btn btn-success btn-lg">Inventory</button><button id="clearItemsButton" type="button" class="btn btn-warning btn-lg">Clear Items</button>
+          </div>
+        </div>
+        <div class="col-sm-4" id="inventory">
+          <div class="jumbotron">
+            <h3>Inventory</h3>
+          </div>
+          <div class="inventory-row row">
+            <div id="inventory1" class="col-sm-6"></div>
+            <div id="inventory2" class="col-sm-6"></div>
+          </div>
+          <div class="inventory-row row">
+            <div id="inventory3" class="col-sm-6"></div>
+            <div id="inventory4" class="col-sm-6"></div>
+          </div>
+          <!--
+          <div class="row">
+            <div class="col-sm-4"><img src="img/coffee2.png"></div>
+            <div class="col-sm-4"><img src="img/fixedgear.png"></div>
+            <div class="col-sm-4"><img src="img/craftbeer.png"></div>
+          </div>
+        -->
+        </div>
+      </div><!--end row-->
+    </div><!--end container-->
       <div class="container" id="store">
         <div class="jumbotron">
           <h3>Store</h3>
@@ -146,7 +153,7 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
     <div id="footer">
-      <p>Created by: *INSERT WITTY TEAM NAME HERE*</p>
+      <p>Created by: *Team EAFA*</p>
     </div>
   </body>
 </html>

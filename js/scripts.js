@@ -214,7 +214,7 @@ $(document).ready(function(){
     if (confirm("This will completely reset the game, continue?")){
       newGame.resetEverything();
     resetDisplay();
-    $("#inventory-row img").remove();
+    $(".inventory-row img").remove();
     $("#store img").removeClass("lowOpacity");
     newGame.newPlayer($("#yard .row div").length);
     inventoryItems = 0;
@@ -224,7 +224,7 @@ $(document).ready(function(){
   function resetDisplay(){
     $("#yard img.itemImage").remove();
     $("#hipsterImage").hide();
-    $("#inventory-row img").removeClass("lowOpacity");
+    $(".inventory-row img").removeClass("lowOpacity");
   }
 
   $("#store img").click(function(){
@@ -233,10 +233,11 @@ $(document).ready(function(){
     var itemIdArray = $(this).attr("id").split("_");
     var itemType = itemIdArray[0];
     var itemName = itemIdArray[1];
+    var inventoryMax = 4;
     //if clicked (store) image has lowOpacity class then it is already in inventory
     if($(this).hasClass("lowOpacity")){
       //find image in inventory and remove it, then remove lowOpacity class from store and toggle inInventory in game object
-      var itemIndex = newGame.displayedItems.findIndex(function(item){
+      var itemIndex = newGame.itemArray.findIndex(function(item){
         return (item.type === itemType && item.name === itemName);
       });
       if(itemIndex !== -1){
@@ -249,7 +250,7 @@ $(document).ready(function(){
           }
         });
       }
-      $("#inventory-row img").each(function(index){
+      $(".inventory-row img").each(function(index){
         if($(this).hasClass(itemType + "_" + itemName)){
           $("#" + itemType + "_" + itemName).removeClass("lowOpacity");
           $(this).remove();
@@ -258,12 +259,12 @@ $(document).ready(function(){
         }
       });
     } else {
-      //if under 3 items and object does not have lowOpacity class, can add to inventory
-      if(inventoryItems < 3){
+      //if under 4 items and object does not have lowOpacity class, can add to inventory
+      if(inventoryItems < inventoryMax){
         if(newGame.addInventory(itemType, itemName)){
           inventoryItems++;
           //find first empty div and shove image inside - return false breaks the each loop
-          $("#inventory-row div").each(function(){
+          $(".inventory-row div").each(function(){
             if(!$(this).html()){
               $(this).append("<img class='" + itemType + "_" + itemName + "' src='" + clickedImg + "'>");
               $(this).children("img").click(inventoryImgClick);
@@ -273,7 +274,7 @@ $(document).ready(function(){
           $("#"+ itemType + "_" + itemName).addClass("lowOpacity");
         }
       } else {
-          //if more than 3 items can't add more
+          //if more than 4 items can't add more
           $("#fullInventory").show();
       }
     }
