@@ -4,11 +4,13 @@ function Game() {
   this.displayArea = [];
   this.hipsterTracker;
   this.displayedItems;
+  this.userMonies;
 }
 
 Game.prototype.newPlayer = function(fieldLength){
   this.progress = true;
   this.hipsterTracker = 0;
+  this.userMonies = 0;
   for(var i = 0; i < fieldLength; i++){
     if(i === Math.floor(fieldLength/2)){
       this.displayArea.push("hipster");
@@ -19,8 +21,13 @@ Game.prototype.newPlayer = function(fieldLength){
   return this.progress;
 }
 
+Game.prototype.addMonies = function(amountToAdd){
+  this.userMonies += amountToAdd;
+  return this.userMonies;
+}
+
 Game.prototype.createItems = function(){
-  this.itemArray = [new Item("pbr", "beer"), new Item("craft", "beer"), new Item("recumbent", "bikes"), new Item("fixed", "bikes"), new Item("cigar", "cigarettes"), new Item("americanSpirit", "cigarettes"), new Item("vinyl", "music"), new Item("cd", "music"), new Item("latte", "coffee"), new Item("drip", "coffee")];
+  this.itemArray = [new Item("pbr", "beer", 2), new Item("craft", "beer", 5), new Item("recumbent", "bikes", 10), new Item("fixed", "bikes", 7), new Item("cigar", "cigarettes", 6), new Item("americanSpirit", "cigarettes", 4), new Item("vinyl", "music", 8), new Item("cd", "music", 3), new Item("latte", "coffee", 5), new Item("drip", "coffee", 3)];
 }
 
 Game.prototype.createHipster = function(){
@@ -29,7 +36,7 @@ Game.prototype.createHipster = function(){
 new Hipster("hat",["beer", "cigarettes", "coffee"], ["music", "bikes"], "img/hat.png"),
 new Hipster("beardyPrime",["craft", "recumbent", "vinyl"], ["pbr", "fixed", "cd", "cigarettes", "coffee"], "img/beardyprime.png"),
 new Hipster("glassesPrime",["americanSpirit", "latte", "cd"], ["beer", "bikes", "drip", "cigar", "vinyl"], "img/glassesprime.png"),
-new Hipster("hat",["pbr", "cigar", "drip"], ["music", "bikes", "craft", "americanSpirit", "latte"], "img/hatprime.png")];
+new Hipster("hatPrime",["pbr", "cigar", "drip"], ["music", "bikes", "craft", "americanSpirit", "latte"], "img/hatprime.png")];
 }
 
 Game.prototype.addInventory = function(itemType, itemName){
@@ -64,6 +71,19 @@ Game.prototype.getDisplayed = function(){
   }
 }
 
+Game.prototype.buyThing = function(itemName){
+  for(var i = 0; i < this.itemArray.length; i++){
+    if(this.itemArray[i].name === itemName){
+      if(this.userMonies > this.itemArray[i].cost){
+        this.userMonies -= this.itemArray[i].cost;
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+}
+
 Game.prototype.checkForHipster = function(){
   this.getDisplayed();
   var returnHipster;
@@ -80,27 +100,36 @@ Game.prototype.checkForHipster = function(){
     }
     return 0;
   });
-  if(this.hipsterArray[0].affinityMeter === this.hipsterArray[1].affinityMeter){
-    if(this.hipsterArray[0].affinityMeter !== 0 && this.hipsterArray[0].name + "Prime" ===  this.hipsterArray[1].name || this.hipsterArray[1].name + "Prime" ===  this.hipsterArray[0].name){
-      var primeReturn = Math.floor(Math.random()*20);
-      if(primeReturn === 0){
-        if(this.hipsterArray[0].name.endsWith("Prime")){
-          returnHipster = this.hipsterArray[0];
+  if(this.hipsterArray[0].affinityMeter > 1){
+    console.log("inside greater than 0 check")
+    if(this.hipsterArray[0].affinityMeter === this.hipsterArray[1].affinityMeter){
+      console.log("inside tie check")
+      if(this.hipsterArray[0].affinityMeter !== 0 && this.hipsterArray[0].name + "Prime" ===  this.hipsterArray[1].name || this.hipsterArray[1].name + "Prime" ===  this.hipsterArray[0].name){
+        console.log("inside prime check")
+        var primeReturn = Math.floor(Math.random()*20);
+        if(primeReturn === 0){
+          if(this.hipsterArray[0].name.endsWith("Prime")){
+            returnHipster = this.hipsterArray[0];
+          } else {
+            returnHipster =  this.hipsterArray[1];
+          }
         } else {
-          returnHipster =  this.hipsterArray[1];
+          if(this.hipsterArray[0].name.endsWith("Prime")){
+            returnHipster =  this.hipsterArray[1];
+          } else {
+            returnHipster =  this.hipsterArray[0];
+          }
         }
       } else {
-        if(this.hipsterArray[0].name.endsWith("Prime")){
-          returnHipster =  this.hipsterArray[1];
-        } else {
-          returnHipster =  this.hipsterArray[0];
-        }
+        returnHipster =  false;
       }
     } else {
-      returnHipster =  false;
+      console.log("inside no tie check")
+      returnHipster =  this.hipsterArray[0];
     }
   } else {
-    returnHipster =  this.hipsterArray[0];
+    console.log("inside less than 0 check")
+    returnHipster = false;
   }
   if(returnHipster && !returnHipster.discovered){
       this.hipsterTracker++;
@@ -137,9 +166,10 @@ Game.prototype.resetEverything = function(){
   this.displayArea = [];
 }
 
-function Item(name, type) {
+function Item(name, type, cost) {
   this.name = name;
   this.type = type;
+  this.cost = cost;
   this.inInventory = false;
   this.displayed = false;
 }
@@ -177,7 +207,14 @@ Hipster.prototype.checkAffinity = function(displayedItems){
   }
   return this.affinityMeter;
 }
-
+Hipster.prototype.giveMonies = function () {
+  this.name.endsWith("Prime")
+  if (this.name.endsWith("Prime")) {
+    return Math.floor(Math.random() * (4)) + 2;
+  } else {
+    return Math.floor(Math.random() * (3)) + 1;
+  }
+};
 
 //<!-- Front End  -->
 $(document).ready(function(){
@@ -214,7 +251,7 @@ $(document).ready(function(){
     if (confirm("This will completely reset the game, continue?")){
       newGame.resetEverything();
     resetDisplay();
-    $("#inventory-row img").remove();
+    $(".inventory-row img").remove();
     $("#store img").removeClass("lowOpacity");
     newGame.newPlayer($("#yard .row div").length);
     inventoryItems = 0;
@@ -224,7 +261,7 @@ $(document).ready(function(){
   function resetDisplay(){
     $("#yard img.itemImage").remove();
     $("#hipsterImage").hide();
-    $("#inventory-row img").removeClass("lowOpacity");
+    $(".inventory-row img").removeClass("lowOpacity");
   }
 
   $("#store img").click(function(){
@@ -233,10 +270,11 @@ $(document).ready(function(){
     var itemIdArray = $(this).attr("id").split("_");
     var itemType = itemIdArray[0];
     var itemName = itemIdArray[1];
+    var inventoryMax = 4;
     //if clicked (store) image has lowOpacity class then it is already in inventory
     if($(this).hasClass("lowOpacity")){
       //find image in inventory and remove it, then remove lowOpacity class from store and toggle inInventory in game object
-      var itemIndex = newGame.displayedItems.findIndex(function(item){
+      var itemIndex = newGame.itemArray.findIndex(function(item){
         return (item.type === itemType && item.name === itemName);
       });
       if(itemIndex !== -1){
@@ -249,7 +287,7 @@ $(document).ready(function(){
           }
         });
       }
-      $("#inventory-row img").each(function(index){
+      $(".inventory-row img").each(function(index){
         if($(this).hasClass(itemType + "_" + itemName)){
           $("#" + itemType + "_" + itemName).removeClass("lowOpacity");
           $(this).remove();
@@ -258,12 +296,12 @@ $(document).ready(function(){
         }
       });
     } else {
-      //if under 3 items and object does not have lowOpacity class, can add to inventory
-      if(inventoryItems < 3){
+      //if under 4 items and object does not have lowOpacity class, can add to inventory
+      if(inventoryItems < inventoryMax){
         if(newGame.addInventory(itemType, itemName)){
           inventoryItems++;
           //find first empty div and shove image inside - return false breaks the each loop
-          $("#inventory-row div").each(function(){
+          $(".inventory-row div").each(function(){
             if(!$(this).html()){
               $(this).append("<img class='" + itemType + "_" + itemName + "' src='" + clickedImg + "'>");
               $(this).children("img").click(inventoryImgClick);
@@ -273,7 +311,7 @@ $(document).ready(function(){
           $("#"+ itemType + "_" + itemName).addClass("lowOpacity");
         }
       } else {
-          //if more than 3 items can't add more
+          //if more than 4 items can't add more
           $("#fullInventory").show();
       }
     }
@@ -285,22 +323,31 @@ $(document).ready(function(){
     var clickedItemType = clickedItemArray[0];
     var clickedItemName = clickedItemArray[1];
     var clickedImgSrc = $(this).attr("src");
-    var hipster;
+    var hipster, monies;
     if($(this).hasClass("lowOpacity")){
       //remove
       $(this).removeClass("lowOpacity");
       clickedItemArray = $(this).attr("class").split("_");
-      $("#yard img").each(function(){
+      $("#yard .itemImage").each(function(){
         var imgId = $(this).attr("id").split("-");
         if(imgId[0] === clickedItemArray.join("_")){
           $(this).remove();
           newGame.addDisplay(clickedItemArray[0], clickedItemArray[1], parseInt(imgId[1]));
           hipster = newGame.checkForHipster();
           if(hipster){
+            monies = hipster.giveMonies();
+            newGame.addMonies(monies);
+            updateMoniesSpan();
+            $("#hipsterName").text(hipster.name);
+            $("#hipsterGiveAmt").text(monies);
             $("#hipsterImage").attr("src", hipster.imgLink);
             $("#hipsterImage").show();
+            $("." + hipster.name).show();
+            $("#yard p").show();
+            $("#hipsterTracker").text(newGame.hipsterTracker);
           } else {
             $("#hipsterImage").hide();
+            $("#yard p").hide();
           }
           return false;
         }
@@ -318,12 +365,19 @@ $(document).ready(function(){
           newGame.addDisplay(clickedItemType, clickedItemName, randomSquare);
           hipster = newGame.checkForHipster();
           if(hipster){
+            monies = hipster.giveMonies();
+            newGame.addMonies(monies);
+            updateMoniesSpan();
+            $("#hipsterName").text(hipster.name);
+            $("#hipsterGiveAmt").text(monies);
             $("#hipsterImage").attr("src", hipster.imgLink);
             $("#hipsterImage").show();
             $("." + hipster.name).show();
+            $("#yard p").show();
             $("#hipsterTracker").text(newGame.hipsterTracker);
           } else {
             $("#hipsterImage").hide();
+            $("#yard p").hide();
           }
           return false;
         }
@@ -331,6 +385,10 @@ $(document).ready(function(){
       });
       $(this).addClass("lowOpacity");
     }
+  }
+
+  function updateMoniesSpan(){
+    $("#resources").text(newGame.userMonies);
   }
 
 });

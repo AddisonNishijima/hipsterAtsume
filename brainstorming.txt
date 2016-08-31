@@ -30,10 +30,12 @@ combo: Rarity scale (Chance to get rich hipster?)(He’s shiny) (or Beard + glas
 combo: Hipster Tracking - indication that you have collected all hipsters (or all hipsters for that environment)
 frontend: Environment
 backend: Resources (collected through hipsters that show up)
- - when you get a hipster, said hipster gives you 1-3 hipsterMonies, 1-5 hipsterMonies for rare hipsters
- - hipstersMonies are used to buy stuff at the store
+ - when you get a hipster, said hipster gives you 1-3 hipsterMonies, 2-5 hipsterMonies for rare hipsters (hipster giveMonies prototype)
+ - hipstersMonies are used to buy stuff at the store (game, user monies property, item cost property)
+
+ resources: part 2: THE RETURN OF THE SON OF THE MASK OF RESOURCES: THE RECKONING
  - getting rid of inventory will get you some monies back (half)
- -
+ - additional inventory rows (max - 8) = 20 hipstermonies (change inventory max) (display none initially and then display them)
 
 Tier 3:
 Multi-level resources (gold and silver hipstermonies)

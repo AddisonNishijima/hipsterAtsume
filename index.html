@@ -27,7 +27,7 @@
         <ul>
           <li>Click an item in the store and it will appear in your inventory!</li>
           <li>Click it in the store again to remove it from your inventory</li>
-          <li>You can only have 3 inventory items, so choose carefully!</li>
+          <li>You can only have 4 inventory items, so choose carefully!</li>
         </ul>
         <p><strong>How to add items to the 'yard': </strong></p>
         <ul>
@@ -38,69 +38,79 @@
         <p><strong>Try to collect all the hipsters!!!</strong></p>
       </div>
     </div>
-    <div class="container" id="yard">
-      <span id ="resourceCollected">Total Hipster Monies:<span id="resources">
-        <img id="moniesColl" class="img-responsive" src="img/hipsterMonies.png">
-      0</span></span>
+    <div class="container">
+      <span id ="resourceCollected">Total Hipster Monies: <span id="resources">0</span>
+        <img class="moniesColl img-responsive" src="img/hipsterMonies.png">
+      </span>
       <span id="anotherId">Total hipsters found : <span id="hipsterTracker"> 0</span> out of 6</span>
-      <div class="row">
-        <div class="col-xs-4 col-sm-4"></div>
-        <div class="col-xs-4 col-sm-4"></div>
-        <div class="col-xs-4 col-sm-4"></div>
-      </div>
-      <div class="row">
-        <div class="col-xs-4 col-sm-4"></div>
-        <div class="col-xs-4 col-sm-4"><img id="hipsterImage" class="img-responsive" src="http://dummyimage.com/250x250/000000/fff.png&text=H"></div>
-        <div class="col-xs-4 col-sm-4"></div>
-      </div>
-      <div class="row">
-        <div class="col-xs-4 col-sm-4"></div>
-        <div class="col-xs-4 col-sm-4"></div>
-        <div class="col-xs-4 col-sm-4"></div>
-      </div>
-      <div class="buttonRow">
-        <button id="newGameButton" type="button" class="btn btn-danger btn-lg">NEW GAME</button><button id="storeButton" type="button" class="btn btn-info btn-lg">Store</button><button id="inventoryButton" type="button" class="btn btn-success btn-lg">Inventory</button><button id="clearItemsButton" type="button" class="btn btn-warning btn-lg">Clear Items</button>
-      </div>
-    </div>
-    <div class="container" id="inventory">
-      <div class="jumbotron">
-        <h3>Inventory</h3>
-      </div>
-      <div id = "inventory-row" class="row">
-        <div id="inventory1" class="col-xs-6 col-sm-4"></div>
-        <div id="inventory2" class="col-xs-6 col-sm-4"></div>
-        <div id="inventory3" class="col-xs-6 col-sm-4"></div>
-      </div>
-      <!--
-      <div class="row">
-        <div class="col-sm-4"><img src="img/coffee2.png"></div>
-        <div class="col-sm-4"><img src="img/fixedgear.png"></div>
-        <div class="col-sm-4"><img src="img/craftbeer.png"></div>
-      </div>
-    -->
-    </div>
+      <div class = "row">
+        <div class="col-md-8" id="yard">
+          <div class="row">
+            <div class="col-xs-4 col-sm-4"></div>
+            <div class="col-xs-4 col-sm-4"></div>
+            <div class="col-xs-4 col-sm-4"></div>
+          </div>
+          <div class="row">
+            <div class="col-xs-4 col-sm-4"></div>
+            <div class="col-xs-4 col-sm-4">
+              <img id="hipsterImage" class="img-responsive" src="http://dummyimage.com/250x250/000000/fff.png&text=H">
+              <p><span id="hipsterName">Name</span> gave you <span id="hipsterGiveAmt"></span> <img class="moniesColl img-responsive" src="img/hipsterMonies.png"></p>
+            </div>
+            <div class="col-xs-4 col-sm-4"></div>
+          </div>
+          <div class="row">
+            <div class="col-xs-4 col-sm-4"></div>
+            <div class="col-xs-4 col-sm-4"></div>
+            <div class="col-xs-4 col-sm-4"></div>
+          </div>
+          <div class="buttonRow">
+            <button id="newGameButton" type="button" class="btn btn-danger btn-lg">NEW GAME</button><button id="storeButton" type="button" class="btn btn-info btn-lg">Store</button><button id="inventoryButton" type="button" class="btn btn-success btn-lg">Inventory</button><button id="clearItemsButton" type="button" class="btn btn-warning btn-lg">Clear Items</button>
+          </div>
+        </div>
+        <div class="col-md-4" id="inventory">
+          <div class="jumbotron">
+            <h3>Inventory</h3>
+          </div>
+          <div class="inventory-row row">
+            <div id="inventory1" class="col-xs-6 col-sm-6"></div>
+            <div id="inventory2" class="col-xs-6 col-sm-6"></div>
+          </div>
+          <div class="inventory-row row">
+            <div id="inventory3" class="col-xs-6 col-sm-6"></div>
+            <div id="inventory4" class="col-xs-6 col-sm-6"></div>
+          </div>
+          <!--
+          <div class="row">
+            <div class="col-sm-4"><img src="img/coffee2.png"></div>
+            <div class="col-sm-4"><img src="img/fixedgear.png"></div>
+            <div class="col-sm-4"><img src="img/craftbeer.png"></div>
+          </div>
+        -->
+        </div>
+      </div><!--end row-->
+    </div><!--end container-->
       <div class="container" id="store">
         <div class="jumbotron">
           <h3>Store</h3>
           <span id="fullInventory">Sorry your inventory is full!</span>
         </div>
         <div class="row">
-          <div class="col-xs-6 col-sm-4"><img class="img-responsive" id="beer_pbr" src="img/beercan.png"><p><img class="img-responsive monies" src="img/hipsterMonies.png"> 3</p></div>
-          <div class="col-xs-6 col-sm-4"><img class="img-responsive" id="cigarettes_cigar" src="img/cigar.png"><p><img class="img-responsive monies" src="img/hipsterMonies.png"> 4</p></div>
-          <div class="col-xs-6 col-sm-4"><img class="img-responsive" id="music_vinyl" src="img/vinyl.png"><p><img class="img-responsive monies" src="img/hipsterMonies.png"> 5</p></div>
+          <div class="col-xs-6 col-sm-4"><img class="img-responsive" id="beer_pbr" src="img/beercan.png"><p><img class="img-responsive monies" src="img/hipsterMonies.png"> 2</p></div>
+          <div class="col-xs-6 col-sm-4"><img class="img-responsive" id="cigarettes_cigar" src="img/cigar.png"><p><img class="img-responsive monies" src="img/hipsterMonies.png"> 6</p></div>
+          <div class="col-xs-6 col-sm-4"><img class="img-responsive" id="music_vinyl" src="img/vinyl.png"><p><img class="img-responsive monies" src="img/hipsterMonies.png"> 8</p></div>
         </div>
         <div class="row">
           <div class="col-xs-6 col-sm-4"><img class="img-responsive" id="coffee_latte" src="img/coffee2.png"><p><img class="img-responsive monies" src="img/hipsterMonies.png"> 5</p></div>
-          <div class="col-xs-6 col-sm-4"><img class="img-responsive" id="bikes_fixed" src="img/fixedgear.png"><p><img class="img-responsive monies" src="img/hipsterMonies.png"> 10</p></div>
+          <div class="col-xs-6 col-sm-4"><img class="img-responsive" id="bikes_fixed" src="img/fixedgear.png"><p><img class="img-responsive monies" src="img/hipsterMonies.png"> 7</p></div>
           <div class="col-xs-6 col-sm-4"><img class="img-responsive" id="beer_craft" src="img/craftbeer.png"><p><img class="img-responsive monies" src="img/hipsterMonies.png"> 5</p></div>
         </div>
         <div class="row">
-          <div class="col-xs-6 col-sm-4"><img class="img-responsive" id="cigarettes_americanSpirit" src="img/cigarette.png"><p><img class="img-responsive monies" src="img/hipsterMonies.png"> 5</p></div>
+          <div class="col-xs-6 col-sm-4"><img class="img-responsive" id="cigarettes_americanSpirit" src="img/cigarette.png"><p><img class="img-responsive monies" src="img/hipsterMonies.png"> 4</p></div>
           <div class="col-xs-6 col-sm-4"><img class="img-responsive" id="bikes_recumbent" src="img/recumbent.png"><p><img class="img-responsive monies" src="img/hipsterMonies.png"> 10</p></div>
           <div class="col-xs-6 col-sm-4"><img class="img-responsive" id="music_cd" src="img/cd.png"><p><img class="img-responsive monies" src="img/hipsterMonies.png"> 3</p></div>
         </div>
         <div class="row">
-          <div class="col-xs-6 col-sm-4"><img class="img-responsive" id="coffee_drip" src="img/coffee1.png"><p><img class="img-responsive monies" src="img/hipsterMonies.png"> 2</p></div>
+          <div class="col-xs-6 col-sm-4"><img class="img-responsive" id="coffee_drip" src="img/coffee1.png"><p><img class="img-responsive monies" src="img/hipsterMonies.png"> 3</p></div>
           <div class="col-xs-6 col-sm-4"><p>Coming Soon!</p></div>
           <div class="col-xs-6 col-sm-4"><p>Coming Soon!</p></div>
         </div>
@@ -149,7 +159,7 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
     <div id="footer">
-      <p>Created by: *INSERT WITTY TEAM NAME HERE*</p>
+      <p>Created by: *Team EAFA*</p>
     </div>
   </body>
 </html>
