@@ -23,6 +23,27 @@
   text-align: center;
 }
 
+.modal .col-sm-4 {
+  background-color: #455268;
+  max-width: 200px;
+  height: 200px;
+  padding: 10px 10px 10px 10px;
+  border: 3px solid black;
+  color: white;
+  text-align: center;
+  letter-spacing: 0.2em;
+  font-size: 18pt;
+  font-family: 'Gloria Hallelujah', cursive;
+}
+
+#store .col-sm-4 p {
+  color: white;
+}
+#store .col-sm-4 img.monies {
+  display:inline-block;
+  width:10px;
+  height:10px;
+}
 #instruction {
   /*display: none;*/
 }
@@ -51,7 +72,7 @@
   max-width: 450px;
 }
 
-#inventory .col-sm-4, #store .col-sm-4, .modal .col-sm-4 {
+#inventory .col-sm-4, #store .col-sm-4 {
   background-color: #455268;
   padding: 10px 10px 10px 10px;
   border: 3px solid black;
@@ -144,7 +165,7 @@
   margin: 0 auto;
 }
 
-.modal-body .col-sm-4 h3, .modal-body .col-sm-4 img{
+.modal-body .col-sm-4 p, .modal-body .col-sm-4 img{
   display: none;
 }
 
@@ -154,6 +175,13 @@ button {
   margin-left: 49px;
 }
 
+#resourceCollected {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  font-size: large;
+  font-family: 'Gloria Hallelujah', cursive;
+}
 #anotherId {
   text-align: center;
   display: block;
