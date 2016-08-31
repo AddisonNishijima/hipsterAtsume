@@ -341,11 +341,13 @@ $(document).ready(function(){
             $("#hipsterName").text(hipster.name);
             $("#hipsterGiveAmt").text(monies);
             $("#hipsterImage").attr("src", hipster.imgLink);
+            $("#hipsterImage").addClass("animated rollIn");
             $("#hipsterImage").show();
             $("." + hipster.name).show();
             $("#yard p").show();
             $("#hipsterTracker").text(newGame.hipsterTracker);
           } else {
+            $("#hipsterImage").removeClass("animated rollIn");
             $("#hipsterImage").hide();
             $("#yard p").hide();
           }
@@ -371,11 +373,13 @@ $(document).ready(function(){
             $("#hipsterName").text(hipster.name);
             $("#hipsterGiveAmt").text(monies);
             $("#hipsterImage").attr("src", hipster.imgLink);
+            $("#hipsterImage").addClass("animated rollIn");
             $("#hipsterImage").show();
             $("." + hipster.name).show();
             $("#yard p").show();
             $("#hipsterTracker").text(newGame.hipsterTracker);
           } else {
+            $("#hipsterImage").removeClass("animated rollIn");
             $("#hipsterImage").hide();
             $("#yard p").hide();
           }
