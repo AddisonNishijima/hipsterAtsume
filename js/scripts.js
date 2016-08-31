@@ -3,6 +3,7 @@ function Game() {
   this.progress = false;
   this.displayArea = [];
   this.hipsterTracker;
+  this.displayedItems;
 }
 
 Game.prototype.newPlayer = function(fieldLength){
@@ -117,8 +118,8 @@ Game.prototype.clearDisplay = function(){
   });
   this.displayedItems = [];
   for(var i = 0; i < this.displayArea.length; i++){
-    if(!this.displayArea[i] === "hipster"){
-      this.displayArea.push(i);
+    if(!(this.displayArea[i] === "hipster")){
+      this.displayArea[i] = i;
     }
   }
 }
@@ -135,7 +136,6 @@ Game.prototype.resetEverything = function(){
   this.displayedItems = [];
   this.displayArea = [];
 }
-
 
 function Item(name, type) {
   this.name = name;
@@ -236,6 +236,19 @@ $(document).ready(function(){
     //if clicked (store) image has lowOpacity class then it is already in inventory
     if($(this).hasClass("lowOpacity")){
       //find image in inventory and remove it, then remove lowOpacity class from store and toggle inInventory in game object
+      var itemIndex = newGame.displayedItems.findIndex(function(item){
+        return (item.type === itemType && item.name === itemName);
+      });
+      if(itemIndex !== -1){
+        $("#yard .itemImage").each(function(){
+          var yardImgId = $(this).attr("id").split("-");
+          if(yardImgId[0] === (itemType + "_" + itemName)){
+            newGame.displayArea[parseInt(yardImgId[1])] = parseInt(yardImgId[1]);
+            $(this).remove();
+            return false;
+          }
+        });
+      }
       $("#inventory-row img").each(function(index){
         if($(this).hasClass(itemType + "_" + itemName)){
           $("#" + itemType + "_" + itemName).removeClass("lowOpacity");
@@ -289,6 +302,7 @@ $(document).ready(function(){
           } else {
             $("#hipsterImage").hide();
           }
+          return false;
         }
       });
     } else {
