@@ -36,6 +36,27 @@ All of this gets translated to the ui
 * Example input: display alcoholicHipster;
 * Example output: alcoholicHipster is displayed;
 
+Hipster returns monies which can be used to buy items
+* Example input: beardy;
+* Example output: 3 hipster monies;
+
+New environments can be purchased with hipster monies
+* Example input: 50 monies;
+* Example output: New environment;
+
+Rare hipsters appear when specific items are placed in the yard (20% chance)
+* Example input: craft beer, recumbent bike, and a cd;
+* Example output: Beardy Prime;
+
+Collect all 6 hipsters to complete your album
+* Example input: whatever your last hipster you needed was(depends on order);
+* Example output: Shows all 6 hipsters in album on click of link;
+
+Buying items in store deducts total hipster monies
+* Example input: Buy cd;
+* Example output: total monies -3;
+
+
 ## Setup/Installation Requirements
 
 * _Copy the repository from GitHub_
