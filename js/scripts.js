@@ -29,7 +29,7 @@ Game.prototype.createHipster = function(){
 new Hipster("hat",["beer", "cigarettes", "coffee"], ["music", "bikes"], "img/hat.png"),
 new Hipster("beardyPrime",["craft", "recumbent", "vinyl"], ["pbr", "fixed", "cd", "cigarettes", "coffee"], "img/beardyprime.png"),
 new Hipster("glassesPrime",["americanSpirit", "latte", "cd"], ["beer", "bikes", "drip", "cigar", "vinyl"], "img/glassesprime.png"),
-new Hipster("hat",["pbr", "cigar", "drip"], ["music", "bikes", "craft", "americanSpirit", "latte"], "img/hatprime.png")];
+new Hipster("hatPrime",["pbr", "cigar", "drip"], ["music", "bikes", "craft", "americanSpirit", "latte"], "img/hatprime.png")];
 }
 
 Game.prototype.addInventory = function(itemType, itemName){
@@ -80,32 +80,43 @@ Game.prototype.checkForHipster = function(){
     }
     return 0;
   });
-  if(this.hipsterArray[0].affinityMeter === this.hipsterArray[1].affinityMeter){
-    if(this.hipsterArray[0].affinityMeter !== 0 && this.hipsterArray[0].name + "Prime" ===  this.hipsterArray[1].name || this.hipsterArray[1].name + "Prime" ===  this.hipsterArray[0].name){
-      var primeReturn = Math.floor(Math.random()*20);
-      if(primeReturn === 0){
-        if(this.hipsterArray[0].name.endsWith("Prime")){
-          returnHipster = this.hipsterArray[0];
+  if(this.hipsterArray[0].affinityMeter > 1){
+    console.log("inside greater than 0 check")
+    if(this.hipsterArray[0].affinityMeter === this.hipsterArray[1].affinityMeter){
+      console.log("inside tie check")
+      if(this.hipsterArray[0].affinityMeter !== 0 && this.hipsterArray[0].name + "Prime" ===  this.hipsterArray[1].name || this.hipsterArray[1].name + "Prime" ===  this.hipsterArray[0].name){
+        console.log("inside prime check")
+        var primeReturn = Math.floor(Math.random()*20);
+        if(primeReturn === 0){
+          if(this.hipsterArray[0].name.endsWith("Prime")){
+            returnHipster = this.hipsterArray[0];
+          } else {
+            returnHipster =  this.hipsterArray[1];
+          }
         } else {
-          returnHipster =  this.hipsterArray[1];
+          if(this.hipsterArray[0].name.endsWith("Prime")){
+            returnHipster =  this.hipsterArray[1];
+          } else {
+            returnHipster =  this.hipsterArray[0];
+          }
         }
       } else {
-        if(this.hipsterArray[0].name.endsWith("Prime")){
-          returnHipster =  this.hipsterArray[1];
-        } else {
-          returnHipster =  this.hipsterArray[0];
-        }
+        returnHipster =  false;
       }
     } else {
-      returnHipster =  false;
+      console.log("inside no tie check")
+      returnHipster =  this.hipsterArray[0];
     }
   } else {
-    returnHipster =  this.hipsterArray[0];
+    console.log("inside less than 0 check")
+    returnHipster = false;
   }
   if(returnHipster && !returnHipster.discovered){
       this.hipsterTracker++;
       returnHipster.discovered = true;
   }
+  console.log(this.hipsterArray);
+  console.log(returnHipster);
   return returnHipster;
 }
 
