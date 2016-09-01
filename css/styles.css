@@ -268,6 +268,10 @@ img.lowOpacity {
  display: block;
 }
 
+#store .bgItem {
+  padding-bottom: 5px;
+}
+
 #footer{
   margin-top: 100px;
   text-align: center;

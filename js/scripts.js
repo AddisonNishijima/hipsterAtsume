@@ -399,21 +399,9 @@ $(document).ready(function(){
           newGame.addDisplay(clickedItemArray[0], clickedItemArray[1], parseInt(imgId[1]));
           hipster = newGame.checkForHipster();
           if(hipster){
-            monies = hipster.giveMonies();
-            newGame.addMonies(monies);
-            updateMoniesSpan();
-            $("#hipsterName").text(hipster.name);
-            $("#hipsterGiveAmt").text(monies);
-            $("#hipsterImage").attr("src", hipster.imgLink);
-            $("#hipsterImage").addClass("animated rollIn");
-            $("#hipsterImage").show();
-            $("." + hipster.name).show();
-            $("#yard p").show();
-            $("#hipsterTracker").text(newGame.hipsterTracker);
+            showHipster(hipster);
           } else {
-            $("#hipsterImage").removeClass("animated rollIn");
-            $("#hipsterImage").hide();
-            $("#yard p").hide();
+            hideHipster();
           }
           return false;
         }
@@ -431,21 +419,9 @@ $(document).ready(function(){
           newGame.addDisplay(clickedItemType, clickedItemName, randomSquare);
           hipster = newGame.checkForHipster();
           if(hipster){
-            monies = hipster.giveMonies();
-            newGame.addMonies(monies);
-            updateMoniesSpan();
-            $("#hipsterName").text(hipster.name);
-            $("#hipsterGiveAmt").text(monies);
-            $("#hipsterImage").attr("src", hipster.imgLink);
-            $("#hipsterImage").addClass("animated rollIn");
-            $("#hipsterImage").show();
-            $("." + hipster.name).show();
-            $("#yard p").show();
-            $("#hipsterTracker").text(newGame.hipsterTracker);
+            showHipster(hipster);
           } else {
-            $("#hipsterImage").removeClass("animated rollIn");
-            $("#hipsterImage").hide();
-            $("#yard p").hide();
+            hideHipster();
           }
           return false;
         }
@@ -453,6 +429,29 @@ $(document).ready(function(){
       });
       $(this).addClass("lowOpacity");
     }
+  }
+
+  function showHipster(hipster) {
+    monies = hipster.giveMonies();
+    newGame.addMonies(monies);
+    updateMoniesSpan();
+    $("#hipsterName").text(hipster.name);
+    $("#hipsterGiveAmt").text(monies);
+    $("#hipsterImage").attr("src", hipster.imgLink);
+    $("#hipsterImage").addClass("animated rollIn");
+    $("#hipsterImage").show();
+    $('#hipsterImage').on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+      $("#yard p").show();
+      $('#hipsterImage').off();
+    });
+    $("." + hipster.name).show();
+    $("#hipsterTracker").text(newGame.hipsterTracker);
+  }
+
+  function hideHipster(){
+    $("#hipsterImage").removeClass("animated rollIn");
+    $("#hipsterImage").hide();
+    $("#yard p").hide();
   }
 
   function updateMoniesSpan(){
