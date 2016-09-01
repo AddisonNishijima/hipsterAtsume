@@ -58,8 +58,7 @@ On purchase of items in store, game deducts the cost of the item from the user m
 
 ## Setup/Installation Requirements
 
-* _Site is live (here)[https://ewajm.github.io/hipsterAtsume]
-* _Copy the repository from GitHub_
+* _Site is live [here](https://ewajm.github.io/hipsterAtsume)
 * _Open the index.html file a browser of your choice_
 
 ## GitHub link
